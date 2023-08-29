@@ -11,6 +11,8 @@ import {
   CarouselItemComponent,
   CarouselIndicatorsComponent,
   CarouselCaptionComponent,
+  CardComponent,
+  CardBodyComponent,
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 
@@ -28,7 +30,9 @@ import { IconModule } from '@coreui/icons-angular';
     CarouselInnerComponent,
     CarouselItemComponent,
     CarouselIndicatorsComponent,
-    CarouselCaptionComponent
+    CarouselCaptionComponent,
+    CardComponent,
+    CardBodyComponent,
   ],
   exports: [
     IconModule,
@@ -41,7 +45,9 @@ import { IconModule } from '@coreui/icons-angular';
     CarouselInnerComponent,
     CarouselItemComponent,
     CarouselIndicatorsComponent,
-    CarouselCaptionComponent
+    CarouselCaptionComponent,
+    CardComponent,
+    CardBodyComponent,
   ]
 })
 export class CoreuiModule { }

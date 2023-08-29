@@ -6,12 +6,23 @@
         </span>
         <div class="list-menu">
             <c-navbar-nav>
-                <c-nav-item *ngFor="let item of menuItems">
+                <c-nav-item class="circle-btn" *ngFor="let item of menuItems">
                     <a cNavLink [routerLink]="item.link">
                         <fa-icon [icon]="item.icon"></fa-icon>
                     </a>
                 </c-nav-item>
             </c-navbar-nav>
         </div>
+        <div class="logout-container">
+            <button class="circle-btn logout-btn" (click)="auhtService.logout()">
+                <fa-icon [icon]="faRightFromBracket"></fa-icon>
+            </button>
+        </div>
     </c-container>
 </c-navbar>
+<!-- <div class="logout-container">
+    <span>Log Out</span>
+    <button class="circle-btn logout-btn" (click)="auhtService.logout()">
+        <fa-icon [icon]="faRightFromBracket"></fa-icon>
+    </button>
+</div> -->

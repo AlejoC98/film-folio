@@ -1,3 +1,28 @@
 .container-home {
-    padding: 7rem 3rem;
+    padding: 6rem 0;
+    overflow-x: hidden;
+}
+
+.movies-container {
+    padding: 0 3rem;
+    c-card {
+        transition: all .3s ease-in-out;
+        padding: 1rem;
+        border: none;
+        background-color: transparent;
+        overflow: hidden;
+
+        img {
+            border-radius: 20px;
+        }
+
+        c-card-body {
+            text-align: center;
+            color: #ffffff;
+        }
+    }
+
+    c-card:hover {
+        transform: scale(1.1);
+    }
 }

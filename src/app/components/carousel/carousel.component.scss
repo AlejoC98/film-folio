@@ -1,6 +1,17 @@
+$primary-color: #02d3de;
+
 c-carousel-indicators {
-    background-color: red;
-    display: flex;
-    width: 300px;
-    justify-content: space-between;
+    .carousel-indicators {
+        button {
+            margin: 0 .5rem;
+            border: none;
+            width: 2rem;
+            height: .2rem;
+            background-color: rgba(210, 210, 210, 0.5);
+        }
+
+        button.active {
+            background-color: $primary-color;
+        }
+    }
 }

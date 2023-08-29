@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'src/app/interfaces/menu-item';
-import { faBookmark, faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark, faHouse, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -8,6 +9,11 @@ import { faBookmark, faHouse } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent {
+  
+  faRightFromBracket = faRightFromBracket;
+
+  constructor(public auhtService: AuthService) {}
+
   menuItems: MenuItem[] = [
     {
       name: 'Home',
