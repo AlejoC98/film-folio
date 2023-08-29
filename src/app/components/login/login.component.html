@@ -1,0 +1,28 @@
+<div class="login-container">
+    <div class="video-container">
+        <video autoplay [muted]="'muted'">
+            <source src="https://filmfolio.s3.us-east-2.amazonaws.com/FilmFolio.mp4" type="video/mp4">
+        </video>
+        <h1>FilmFolio</h1>
+    </div>
+    <div class="form-container">
+        <h1>Welcome Back!</h1>
+        <form (ngSubmit)="Authentication()" [formGroup]="login" #loginForm>
+            <div class="mb-3">
+                <input type="email" class="form-control" id="loginEmail" placeholder="Email" formControlName="username">
+                <fa-icon [icon]="faUser"></fa-icon>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="loginPassword" placeholder="Password" formControlName="password">
+                <fa-icon [icon]="faKey"></fa-icon>
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary">
+                    Log In
+                    <fa-icon [icon]="faRightToBracket"></fa-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="divider"></div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "filmfolio-832d6": {
+      "hosting": {
+        "FilmFolio": [
+          "filmfolio-832d6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "filmfolio-832d6"
+  }
+}

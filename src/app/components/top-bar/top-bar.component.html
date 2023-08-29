@@ -1,0 +1,17 @@
+<c-navbar class="navbar" expand="lg" placement="fixed-top">
+    <c-container fluid>
+        <span>
+            <img width="40" src="../../../assets/images/logo.PNG" alt="">
+            ilmFolio
+        </span>
+        <div class="list-menu">
+            <c-navbar-nav>
+                <c-nav-item *ngFor="let item of menuItems">
+                    <a cNavLink [routerLink]="item.link">
+                        <fa-icon [icon]="item.icon"></fa-icon>
+                    </a>
+                </c-nav-item>
+            </c-navbar-nav>
+        </div>
+    </c-container>
+</c-navbar>
