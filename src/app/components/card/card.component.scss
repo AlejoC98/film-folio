@@ -1,0 +1,259 @@
+$primary-color: #02d3de;
+
+.carousel-container {
+    c-card {
+        padding: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 700px;
+        background-color: #141517;
+        color: #ffffff;
+        border: none;
+        display: flex;
+        flex-direction: row;
+        border-radius: 20px;
+        img {
+            width: 180px;
+            height: 250px;
+            border-radius: 15px;
+        }
+
+        c-card-body {
+            position: relative;
+
+            .card-action {
+                position: absolute;
+                border-radius: 10px;
+                top: -16px;
+                right: -16px;
+                display: flex;
+                justify-content: space-between;
+                background-color: #202731;
+                width: 170px;
+                padding: .5rem;
+
+                .action-btn {
+                    position: relative;
+                    background-color: #141517;
+                    border-radius: 10px;
+                    display: grid;
+                    place-items: center;
+                    width: 40px;
+                    height: 40px;
+
+                    fa-icon {
+                        z-index: 10000;
+                        transition: all .2s ease-in-out;
+                    }
+
+                    .btn-bg {
+                        transition: all .5s ease;
+                        opacity: 0;
+                        border-radius: 50px;
+                        display: flex;
+                        width: 45%;
+                        height: 45%;
+                        position: absolute;
+                        filter: blur(8px);
+                    }
+
+                    .btn-bg.favorite {
+                        background-color: #BA274A;
+                    }
+                    .btn-bg.mark {
+                        background-color: #FAA613;
+                    }
+                    .btn-bg.more {
+                        background-color: #939393;
+                    }
+                }
+
+                .action-btn:nth-child(1)::before, .action-btn:nth-child(2)::before {
+                    position: absolute;
+                    background-color: #141517;
+                    right: -20px;
+                    content: '';
+                    width: 20px;
+                    height: 15px;
+                }
+
+                .action-btn:nth-child(1)::after {
+                    position: absolute;
+                    background-color: #202731;
+                    left: -15px;
+                    top: -8px;
+                    content: '';
+                    width: 15px;
+                    height: 15px;
+                }
+
+                .action-btn:nth-child(3)::after {
+                    position: absolute;
+                    background-color: #202731;
+                    right: -8px;
+                    bottom: -15px;
+                    content: '';
+                    width: 15px;
+                    height: 15px;
+                }
+
+                .action-btn:hover {
+                    cursor: pointer;
+                    .btn-bg {
+                        opacity: .5;
+                    }
+
+                    fa-icon {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            .card-action::after {
+                position: absolute;
+                background-color: #141517;
+                border-top-right-radius: 10px;
+                content: '';
+                width: 20px;
+                height: 20px;
+                top: 0;
+                left: -20px;
+            }
+
+            .card-action::before {
+                position: absolute;
+                background-color: #141517;
+                border-top-right-radius: 10px;
+                content: '';
+                width: 20px;
+                height: 20px;
+                bottom: -20px;
+                right: 0;
+                z-index: 1000;
+            }
+
+            .rate-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+                .rate-bg {
+                    background-color: rgba(255,215,0, .10);
+                    filter: blur(6px);
+                    width: 40px;
+                    height: 30px;
+                    border-radius: 50px;
+                }
+                .rating-star {
+                    display: flex;
+                    align-items: center;
+                    position: absolute;
+                    padding: .2rem;
+                    border-radius: 50px;
+                    color: #FFD700;
+                    margin: 0 .2rem;
+                }
+
+                .rate-text {
+                    margin-left: .6rem;
+                }
+            }
+
+            .card-info {
+                width: 100%;
+                position: absolute;
+                bottom: 20px;
+
+                .col, .trailer-container {
+                    height: 45px;
+                    // background-color: #02d3de;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+
+                    fa-icon {
+                        font-size: 1.2rem;
+                        margin-right: .1rem;
+                    }
+
+                    .info-text {
+                        text-align: left;
+                        span {
+                            margin: 0 .2rem;
+                            font-size: 10px;
+                            color: #666666;
+                        }
+                    }
+
+                }
+
+                .trailer-container {
+                    .trailer-btn {
+                        width: 100%;
+                        display: flex;
+                        align-items:baseline;
+                        justify-content: space-between;
+                    }
+                }
+
+                .col:nth-child(2) {
+                    border-left: 1px solid #666666;
+                    border-right: 1px solid #666666;
+                }
+            }
+
+            .card-info::before {
+                background-color:#141517;
+                content: '';
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                bottom: -16px;
+                z-index: 1000;
+                right: -12px;
+                border-bottom-right-radius: 10px;
+            }
+            
+            .card-info::after {
+                background-color: #141517;
+                z-index: 1000;
+                content: '';
+                width: 20px;
+                height: 15px;
+                position: absolute;
+                bottom: -36px;
+                left: -7px;
+                border-bottom-right-radius: 10px;
+            }
+
+            .bottom-line {
+                position: absolute;
+                border-top-left-radius: 10px;
+                bottom: -16px;
+                display: flex;
+                width: 100%;
+                height: 20px;
+                background-color: #202731;
+            }
+
+            .bottom-line::before {
+                background-color: #202731;
+                content: '';
+                width: 20px;
+                height: 10px;
+                position: absolute;
+                bottom: -5px;
+                left: -10px;
+            }
+
+            .bottom-line::after {
+                background-color: #202731;
+                content: '';
+                width: 20px;
+                height: 10px;
+                position: absolute;
+                bottom: 20px;
+                right: 0;
+            }
+        }
+    }
+}

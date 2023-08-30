@@ -2,17 +2,18 @@
 <div class="container-home animate__animated animate__fadeInUp">
     <div class="row">
         <div class="col-12">
-            <app-carousel></app-carousel>
+            <!-- <app-carousel></app-carousel> -->
+            <app-card></app-card>
         </div>
     </div>
 </div>
-<div class="container">
-    <h1 class="text-white text-center">Popular Movies</h1>
-</div>
-<div class="container-fluid movies-container">
+<div class="container-fluid movies-container animate__animated animate__fadeInUp">
+    <div class="container-title">
+        <h1 class="text-white text-center">Popular Movies</h1>
+    </div>
     <div class="row">
         <div class="col-md-3 col-sm-4 col-xs-1" *ngFor="let movie of popularMovies">
-            <c-card class="animate__animated animate__fadeInUp">
+            <c-card>
                 <img cCardImg="top" src='https://image.tmdb.org/t/p/w500/{{ movie.poster_path}}' >
                 <c-card-body>
                     <h6 cCardTitle>{{ movie.title }}</h6>

@@ -1,0 +1,59 @@
+<div class="container-fluid carousel-container">
+    <c-card>
+      <img cCardImg="left" src="https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg">
+      <c-card-body>
+        <div class="card-action">
+          <div class="action-btn">
+            <div class="btn-bg favorite"></div>
+            <fa-icon [icon]="faHeart"></fa-icon>
+          </div>
+          <div class="action-btn">
+            <div class="btn-bg mark"></div>
+            <fa-icon [icon]="faBookmark"></fa-icon>
+          </div>
+          <div class="action-btn">
+            <div class="btn-bg more"></div>
+            <fa-icon [icon]="faEllipsisVertical"></fa-icon>
+          </div>
+        </div>
+        <h1 cCardTitle>Card title</h1>
+        <p cCardText>
+          <span class="rate-container">
+            <div class="rate-bg"></div>
+            <fa-icon [icon]="faStar" class="rating-star"></fa-icon>
+            <span class="rate-text">6.9</span>
+          </span>
+        </p>
+        <div class="row card-info">
+          <div class="col">
+            <fa-icon [icon]="faClock"></fa-icon>
+            <div class="info-text">
+              <span> lenght </span>
+              <p>lorem</p>
+            </div>
+          </div>
+          <div class="col">
+            <fa-icon [icon]="faCalendarDays"></fa-icon>
+            <div class="info-text">
+              <span> Year </span>
+              <p>lorem</p>
+            </div>
+          </div>
+          <div class="col">
+            <fa-icon [icon]="faGlobe"></fa-icon>
+            <div class="info-text">
+              <span> Language </span>
+              <p>lorem</p>
+            </div>
+          </div>
+          <div class="col-4 trailer-container">
+            <div class="trailer-btn">
+              <h6> Watch Trailer </h6>
+              <fa-icon [icon]="faArrowRight"></fa-icon>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-line"></div>
+      </c-card-body>
+    </c-card>
+  </div>
