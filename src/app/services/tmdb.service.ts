@@ -41,4 +41,18 @@ export class TMDBService {
     })
 
   }
+
+  search(keyword: string) {
+    return axios.get('https://api.themoviedb.org/3/search/movie', {
+      params: {
+        query: keyword,
+        language: 'en-US',
+        page: '1'
+      },
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + environment.TMDB.access_token
+      }
+    });
+  }
 }

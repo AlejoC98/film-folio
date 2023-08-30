@@ -1,3 +1,20 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Josefin+Sans&family=Lobster&family=Saira+Stencil+One&display=swap');
 @import "../node_modules/animate.css/animate.css";
+
+.content::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+  
+  .content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

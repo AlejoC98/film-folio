@@ -13,6 +13,8 @@ import {
   CarouselCaptionComponent,
   CardComponent,
   CardBodyComponent,
+  ModalModule,
+  ListGroupModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 
@@ -33,6 +35,8 @@ import { IconModule } from '@coreui/icons-angular';
     CarouselCaptionComponent,
     CardComponent,
     CardBodyComponent,
+    ModalModule,
+    ListGroupModule
   ],
   exports: [
     IconModule,
@@ -48,6 +52,8 @@ import { IconModule } from '@coreui/icons-angular';
     CarouselCaptionComponent,
     CardComponent,
     CardBodyComponent,
+    ModalModule,
+    ListGroupModule
   ]
 })
 export class CoreuiModule { }

@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CardComponent } from './components/card/card.component';
+import { ListGroupComponen } from './components/list-group/list-group.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CardComponent } from './components/card/card.component';
     TopBarComponent,
     HomeComponent,
     CarouselComponent,
-    CardComponent
+    CardComponent,
+    ListGroupComponen
   ],
   imports: [
     BrowserModule,

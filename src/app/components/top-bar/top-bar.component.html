@@ -13,16 +13,32 @@
                 </c-nav-item>
             </c-navbar-nav>
         </div>
-        <div class="logout-container">
-            <button class="circle-btn logout-btn" (click)="auhtService.logout()">
-                <fa-icon [icon]="faRightFromBracket"></fa-icon>
-            </button>
-        </div>
     </c-container>
+    <div class="action-container">
+        <button class="circle-btn action-btn" (click)="toggleLiveDemo()">
+            <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        </button>
+        <button class="circle-btn action-btn" (click)="auhtService.logout()">
+            <fa-icon [icon]="faRightFromBracket"></fa-icon>
+        </button>
+        <div class="avatar">
+            <img src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="">
+        </div>
+    </div>
 </c-navbar>
-<!-- <div class="logout-container">
-    <span>Log Out</span>
-    <button class="circle-btn logout-btn" (click)="auhtService.logout()">
-        <fa-icon [icon]="faRightFromBracket"></fa-icon>
-    </button>
-</div> -->
+
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+    <c-modal-header>
+        <button (click)="toggleLiveDemo()" cButtonClose class="modal-close">
+            <fa-icon [icon]="faX"></fa-icon>
+        </button>
+    </c-modal-header>
+    <c-modal-body>
+        <input type="text" class="modal-search-input" [formControl]="keyword" placeholder="Search..." (keyup.enter)="serachMovie()">
+        <div class="container search-container">
+            <app-list-group [list]="searchContent"></app-list-group>
+            <!-- <app-list-group></app-list-group> -->
+        </div>
+    </c-modal-body>
+</c-modal>
