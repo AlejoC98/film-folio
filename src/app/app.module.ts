@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CardComponent } from './components/card/card.component';
 import { ListGroupComponen } from './components/list-group/list-group.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ListGroupComponen } from './components/list-group/list-group.component'
     HomeComponent,
     CarouselComponent,
     CardComponent,
-    ListGroupComponen
+    ListGroupComponen,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,

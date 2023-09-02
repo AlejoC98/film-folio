@@ -55,4 +55,26 @@ export class TMDBService {
       }
     });
   }
+
+  findMovieDetails(id: string) {
+    return axios.get(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, {
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + environment.TMDB.access_token
+      },
+    });
+  }
+
+  async getMovieTrailer(id: string) {
+    return await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, {
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + environment.TMDB.access_token
+      },
+    }).then((res) => {
+      return res.data.results.find((video: { type: Object; }) => video.type === 'Trailer');
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
 }

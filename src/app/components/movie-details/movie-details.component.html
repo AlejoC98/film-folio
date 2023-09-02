@@ -1,0 +1,34 @@
+<div class="movie-detail-container animate__animated animate__fadeIn">
+    <div class="movie-banner">
+        <button class="circle-btn back-btn" [routerLink]="['/Home']">
+            <fa-icon [icon]="faChevronLeft"></fa-icon>
+        </button>
+        <img src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path}}" alt="">
+        <div class="movie-title animate__animated animate__fadeInLeft">
+            <h1>{{ movie.original_title }}</h1>
+            <p>{{ movie.tagline }}</p>
+            <p>{{ movie.overview }}</p>
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid movie-datails-container">
+        <div class="row">
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <h3>Trailer</h3>
+                <div class="block video-container">
+                    <iframe src="" id="video">
+                    </iframe>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <h3>Information</h3>
+                <div class="block">
+                    <p *ngFor="let gen of movie.genres">{{ gen.name }}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,73 @@
+.movie-detail-container {
+    .movie-banner {
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100vh;
+
+        .back-btn {
+            position: absolute;
+            background-color: transparent;
+            color: #ffffff;
+            top: 20px;
+
+            fa-icon {
+                font-size: 1.5rem;
+            }
+        }
+
+        .back-btn:hover {
+            fa-icon {
+                color: #ffffff;
+            }
+        }
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .movie-title {
+            position: absolute;
+            bottom: 50px;
+            width: 100%;
+            padding: 0 3rem;
+            h1 {
+                font-size: 60px;
+            }
+        }
+    }
+
+    .movie-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 1) 100%);
+        pointer-events: none;
+    }
+
+    .movie-datails-container {
+        padding: 3rem;
+
+        .row {
+            margin-bottom: 2rem;
+        }
+
+        .video-container {
+            // position: relative;
+            // min-height: calc();
+            display: grid;
+            place-items: center;
+            // overflow: hidden;
+            #video {
+                // position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}

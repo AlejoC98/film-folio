@@ -2,19 +2,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Josefin+Sans&family=Lobster&family=Saira+Stencil+One&display=swap');
 @import "../node_modules/animate.css/animate.css";
 
-.content::-webkit-scrollbar {
-    width: 10px;
-  }
+.circle-btn {
+    width: 2.8rem;
+    height: 2.8rem;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 .5rem;
+    border: none;
+    a {
+        color: #ffffff;
+    } 
+}
+
+.circle-btn:hover {
+    background-color: #41454b !important;
+
+    fa-icon {
+        color: #02d3de;
+    }
+}
+
+.block {
+    background-color: #141517;
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+}
+
+// iframe:focus {
+//     outline: none;
+//   }
   
-  .content::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  
-  .content::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-  }
-  
-  .content::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+//   iframe[seamless] {
+//     display: block;
+//   }

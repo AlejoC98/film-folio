@@ -1,10 +1,13 @@
 <div class="list-container" cListGroup flush>
-    <a cListGroupItem *ngFor="let item of list" id="{{ item.id }}">
+    <a [routerLink]="['/Movie', item.id]" cListGroupItem *ngFor="let item of list" id="{{ item.id }}">
         <div class="item-container">
             <img 
                 width="80" 
-                src="https://image.tmdb.org/t/p/w500{{ item.poster_path != '' ? item.poster_path : item.backdrop_path
-            }}" alt="">
+                src="https://image.tmdb.org/t/p/w500{{ 
+                    item.poster_path != '' ? item.poster_path : item.backdrop_path
+                    }}"
+                alt=""
+            >
             <div class="item-text">
                 <span> {{ item.title }} </span>
                 <span> {{ item.original_language }} </span>
@@ -12,8 +15,4 @@
             </div>
         </div>
     </a>
-    <!-- <a [routerLink] cListGroupItem>Dapibus ac facilisis in</a>
-    <a [routerLink] cListGroupItem>Morbi leo risus</a>
-    <a [routerLink] cListGroupItem>Porta ac consectetur ac</a>
-    <a [routerLink] cListGroupItem>Vestibulum at eros</a> -->
 </div>
