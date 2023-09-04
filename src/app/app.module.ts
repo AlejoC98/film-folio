@@ -15,6 +15,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { CardComponent } from './components/card/card.component';
 import { ListGroupComponen } from './components/list-group/list-group.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { NgxStarsModule } from 'ngx-stars';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
     CoreuiModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    NgxStarsModule
   ],
   providers: [
   ],

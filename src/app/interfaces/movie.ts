@@ -17,7 +17,7 @@ export interface Movie {
     release_date : string;
     revenue : number;
     runtime : number;
-    spoken_languages : Array<Object>;
+    spoken_languages : SpokenLanguages[];
     status : string;
     tagline : string;
     title : string;
@@ -28,5 +28,11 @@ export interface Movie {
 
 export interface Genre {
     id: number;
+    name: string;
+}
+
+export interface SpokenLanguages {
+    english_name: string;
+    iso_639_1: string;
     name: string;
 }

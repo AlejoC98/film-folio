@@ -77,4 +77,18 @@ export class TMDBService {
       console.log(err);
     });
   }
+
+  async getMovieCast(id: string) {
+    return await axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`, {
+      headers: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + environment.TMDB.access_token
+      },
+    }).then((res) => {
+      return res.data;
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
 }

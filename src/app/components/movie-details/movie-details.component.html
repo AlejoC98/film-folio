@@ -8,27 +8,61 @@
             <h1>{{ movie.original_title }}</h1>
             <p>{{ movie.tagline }}</p>
             <p>{{ movie.overview }}</p>
+            <p class="movie-rating">
+                <ngx-stars 
+                    [readonly]="true" 
+                    [color]="'#FFD700'" 
+                    [initialStars]="movieRate" 
+                    *ngIf="movieRate > 0"
+                />
+                <span>{{ releaseDate.getFullYear() }}</span>
+            </p>
         </div>
     </div>
 
-
-
     <div class="container-fluid movie-datails-container">
         <div class="row">
-            <div class="col-md-7 col-sm-12 col-xs-12">
-                <h3>Trailer</h3>
-                <div class="block video-container">
-                    <iframe src="" id="video">
-                    </iframe>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="movie-trailer col-12">
+                        <h3>Trailer</h3>
+                        <div class="block video-container">
+                            <iframe src="" id="video">
+                            </iframe>
+                        </div>
+                    </div>
+                    <div class="movie-cast col-12">
+                        <h3>Cast</h3>
+                        <div class="block">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque aliquam quia aperiam! Nisi consequatur veniam consectetur voluptatem optio quaerat tempora consequuntur! Asperiores alias, porro sunt ut optio non modi eius.
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-5 col-sm-12 col-xs-12">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 movie-information">
                 <h3>Information</h3>
                 <div class="block">
-                    <p *ngFor="let gen of movie.genres">{{ gen.name }}</p>
+                    <div class="movie-poster">
+                        <img width="100%" src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="">
+                    </div>
+                    <div class="movie-genre">
+                        <span *ngFor="let gen of movie.genres">
+                            <c-badge color="secondary">{{ gen.name }}</c-badge>
+                        </span>
+                    </div>
+                    <div class="information">
+                        <p><strong>original language:</strong> {{ movie.original_language }}</p>
+                        <p><strong>Duration:</strong> {{ movie.runtime }}min</p>
+                        <p><strong>original language:</strong> {{ movie.original_language }}</p>
+                    </div>
+                    <div class="movie-languages">
+                        <h5>Languages</h5>
+                        <ul>
+                            <li *ngFor="let language of movie.spoken_languages">{{ language.english_name }}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

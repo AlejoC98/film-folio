@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie, Genre } from 'src/app/interfaces/movie';
+import { Movie } from 'src/app/interfaces/movie';
 import { TMDBService } from 'src/app/services/tmdb.service';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,6 +20,9 @@ export class MovieDetailsComponent implements OnInit {
   @Input()
 
   faChevronLeft = faChevronLeft;
+
+  movieRate: number = 0;
+  releaseDate: Date = new Date();
   
   movie: Movie = {
     adult : false,
@@ -43,7 +46,11 @@ export class MovieDetailsComponent implements OnInit {
     release_date : '',
     revenue : 0,
     runtime : 0,
-    spoken_languages : [],
+    spoken_languages : [{
+      english_name: "",
+      iso_639_1: "",
+      name: ""
+    }],
     status : '',
     tagline : '',
     title : '',
@@ -55,12 +62,12 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.tmdbService.findMovieDetails(this.route.snapshot.params['id']).then(async (res) => {
       this.movie = res.data;
-      // console.log(res.data.genres[0].name);
-      console.log(this.movie.genres[0].name);
+      this.movieRate = parseFloat((res.data.vote_average / 2).toFixed(1));
+      this.releaseDate = new Date(res.data.release_date);
+      console.log(this.movie);
       let video = await this.tmdbService.getMovieTrailer(this.route.snapshot.params['id']);
       document.getElementById('video')?.setAttribute(
-        'src', 
-        // `https://www.youtube.com/embed/${ video.key }?controls=0&autoplay=1&mute=1&playsinline=1&loop=1`
+        'src',
         `https://www.youtube.com/embed/${ video.key }?controls=0`
       );
     }).catch((err) => {
