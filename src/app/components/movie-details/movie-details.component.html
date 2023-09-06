@@ -9,49 +9,57 @@
             <p>{{ movie?.tagline }}</p>
             <p>{{ movie?.overview }}</p>
             <p class="movie-rating">
-                <ngx-stars 
-                    [readonly]="true" 
-                    [color]="'#FFD700'" 
-                    [initialStars]="movieRate" 
-                    *ngIf="movieRate > 0"
-                />
+                <ngx-stars [readonly]="true" [color]="'#FFD700'" [initialStars]="4.3" />
                 <span>{{ releaseDate.getFullYear() }}</span>
             </p>
         </div>
     </div>
-    <div class="container-fluid movie-datails-container">
+    <div class="container-fluid movie-container">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 movie-information">
-                <h3>Information</h3>
-                <div class="block">
-                    <div class="row row-info">
-                        <div class="col-md-12 col-sm-12 col-xs-12 movie-poster">
-                            <img width="100%" src="https://image.tmdb.org/t/p/original{{ movie?.poster_path }}" alt="">
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12 movie-genre">
-                            <span *ngFor="let gen of movie?.genres">
-                                <c-badge color="secondary">{{ gen.name }}</c-badge>
-                            </span>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12 movie-info">
-                            <p><strong>original language:</strong> {{ movie?.original_language }}</p>
-                            <p><strong>Duration:</strong> {{ movie?.runtime }}min</p>
-                            <p><strong>original language:</strong> {{ movie?.original_language }}</p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Information</h3>
+                        <div class="block">
+                            <div class="row row-poster">
+                                <div class="col-12 movie-poster">
+                                    <img width="100%" src="https://image.tmdb.org/t/p/original{{ movie?.poster_path }}"
+                                        alt="">
+                                </div>
+                                <div class="col-12 movie-genre">
+                                    <span *ngFor="let gen of movie?.genres">
+                                        <c-badge color="secondary">{{ gen.name }}</c-badge>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row row-info">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="movie-info">
+                                        <p><strong>original language:</strong> {{ movie?.original_language }}</p>
+                                        <p><strong>Duration:</strong> {{ movie?.runtime }}min</p>
+                                        <p><strong>original language:</strong> {{ movie?.original_language }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <h5>Languages</h5>
+                                    <ul>
+                                        <li *ngFor="let language of movie?.spoken_languages">
+                                            {{ language.english_name }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col movie-languages">
-                            <h5>Languages</h5>
-                            <ul>
-                                <li *ngFor="let language of movie?.spoken_languages">
-                                    {{ language.english_name }}
-                                </li>
-                            </ul>
+                    <div class="col-md-12">
+                        <h3>Rating</h3>
+                        <div class="block">
+                            <ngx-stars [readonly]="false" [size]="2" [maxStars]="5" [color]="'#FFD700'"></ngx-stars>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 movie-actions">
                 <div class="row">
                     <div class="movie-trailer col-12">
                         <h3>Trailer</h3>
@@ -63,26 +71,32 @@
                     <div class="movie-cast col-12">
                         <h3>Cast</h3>
                         <div class="block">
-                            <swiper-container 
-                                class="mySwiper" 
-                                pagination="false" 
-                                effect="coverflow" 
-                                grab-cursor="true" 
-                                centered-slides="true"
-                                slides-per-view="auto" 
-                                coverflow-effect-rotate="50"
-                                coverflow-effect-stretch="0"
-                                coverflow-effect-depth="100"
-                                coverflow-effect-modifier="1" 
-                                coverflow-effect-slide-shadows="false"
-                            >
+                            <swiper-container class="mySwiper" pagination="false" effect="coverflow" grab-cursor="true"
+                                centered-slides="true" slides-per-view="auto" coverflow-effect-rotate="50"
+                                coverflow-effect-stretch="0" coverflow-effect-depth="100" coverflow-effect-modifier="1"
+                                coverflow-effect-slide-shadows="false">
                                 <swiper-slide *ngFor="let cast of movieCast">
                                     <img src="https://image.tmdb.org/t/p/w500/{{ cast.profile_path }}" alt="">
                                     <div class="hover-info">
                                         <h5>{{ cast.original_name }}</h5>
+                                        <span>{{ cast.character }}</span>
                                     </div>
                                 </swiper-slide>
-                              </swiper-container>
+                            </swiper-container>
+                        </div>
+                    </div>
+                    <div class="movie-comments col-12">
+                        <h3>Comments</h3>
+                        <div class="block">
+                            <div class="comment-form">
+                                <textarea name="comment" placeholder="Comment..." id="" cols="30" rows="5"></textarea>
+                                <div class="submit-btn-container">
+                                    <button cButton color="primary" shape="rounded-pill">
+                                        <fa-icon [icon]="faPaperPlane"></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
+                            <app-reviews [list]="movieReviews"></app-reviews>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,8 @@ import {
   CardBodyComponent,
   ModalModule,
   ListGroupModule,
-  BadgeModule
+  BadgeModule,
+  ButtonModule
 } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 
@@ -38,7 +39,8 @@ import { IconModule } from '@coreui/icons-angular';
     CardBodyComponent,
     ModalModule,
     ListGroupModule,
-    BadgeModule
+    BadgeModule,
+    ButtonModule
   ],
   exports: [
     IconModule,
@@ -56,7 +58,8 @@ import { IconModule } from '@coreui/icons-angular';
     CardBodyComponent,
     ModalModule,
     ListGroupModule,
-    BadgeModule
+    BadgeModule,
+    ButtonModule
   ]
 })
 export class CoreuiModule { }

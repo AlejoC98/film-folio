@@ -18,6 +18,7 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { NgxStarsModule } from 'ngx-stars';
 import { HttpClientModule } from '@angular/common/http';
 import { register } from 'swiper/element/bundle';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 register();
 
 @NgModule({
@@ -29,7 +30,8 @@ register();
     CarouselComponent,
     CardComponent,
     ListGroupComponen,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { Movie } from 'src/app/interfaces/movie';
+import { Movie, MovieReviews } from 'src/app/interfaces/movie';
 
 @Component({
   selector: 'app-list-group',
@@ -8,6 +8,6 @@ import { Movie } from 'src/app/interfaces/movie';
   styleUrls: ['./list-group.component.scss']
 })
 export class ListGroupComponen {
-  @Input() list: Movie[] = [];
+  @Input() list!: any;
 
 }

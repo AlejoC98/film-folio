@@ -2,7 +2,7 @@ import { Observable, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Movie, MovieCast, MovieTrailer } from '../interfaces/movie';
+import { Movie, MovieCast, MovieReviews, MovieTrailer } from '../interfaces/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -20,16 +20,6 @@ export class TMDBService {
       Accept: 'application/json',
       Authorization: 'Bearer ' + environment.TMDB.access_token
     });
-  }
-
-  getTrendingMovies(): Observable<any> {
-    return this.http.get<Movie[]>('https://api.themoviedb.org/3/trending/movie/day?language=en-US', {
-      headers: this.headers
-    }).pipe(
-      map((response: any) => {
-        return response.results;
-      })
-    )
   }
 
   // async createSession() {
@@ -54,6 +44,16 @@ export class TMDBService {
   //   })
 
   // }
+
+  getTrendingMovies(): Observable<any> {
+    return this.http.get<Movie[]>('https://api.themoviedb.org/3/trending/movie/day?language=en-US', {
+      headers: this.headers
+    }).pipe(
+      map((response: any) => {
+        return response.results;
+      })
+    )
+  }
 
   search(keyword: string): Observable<any> {
 
@@ -95,6 +95,16 @@ export class TMDBService {
     }).pipe(
       map((response: any) => {
         return response.cast;
+      })
+    )
+  }
+
+  getMovieReviews(id: string): Observable<any> {
+    return this.http.get<any>(`https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&page=1`, {
+      headers: this.headers
+    }).pipe(
+      map((response: any) => {
+        return response.results;
       })
     )
   }
