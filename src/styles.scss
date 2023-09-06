@@ -1,6 +1,7 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Josefin+Sans&family=Lobster&family=Saira+Stencil+One&display=swap');
+@import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/animate.css/animate.css";
+@import "../node_modules/swiper/swiper-bundle.css";
 
 .circle-btn {
     width: 2.8rem;
@@ -30,11 +31,3 @@
     padding: 1.5rem 1rem;
     margin-bottom: 1.5rem;
 }
-
-// iframe:focus {
-//     outline: none;
-//   }
-  
-//   iframe[seamless] {
-//     display: block;
-//   }

@@ -10,21 +10,18 @@ import { TMDBService } from 'src/app/services/tmdb.service';
 })
 export class HomeComponent implements OnInit {
 
-  popularMovies: Movie[] = [];
+  trendingMovies: Movie[] = [];
 
   constructor (
     public authService: AuthService,
     private tmdbService: TMDBService
   ) {
-    this.tmdbService.createSession();
+    // this.tmdbService.createSession();
   }
   
   ngOnInit(): void {
-    this.tmdbService.getPopularMovie().then((res) => {
-      this.popularMovies = res.data.results;
-      console.log(res.data.results);
-    }).catch((err) => {
-      console.log(err);
-    })
+    this.tmdbService.getTrendingMovies().subscribe({
+      next: (movies: Movie[]) => this.trendingMovies = movies
+    });
   }
 }

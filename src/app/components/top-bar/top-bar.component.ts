@@ -25,7 +25,7 @@ export class TopBarComponent {
 
   keyword = new FormControl('');
 
-  searchContent: Movie[] = [];
+  searchContent: Movie[] | undefined;
 
   menuItems: MenuItem[] = [
     {
@@ -52,10 +52,18 @@ export class TopBarComponent {
 
   serachMovie() {
     // console.log(this.keyword.value);
-    this.tmdbService.search(this.keyword.value!).then((res) => {
-      this.searchContent = res.data.results;
-    }).catch((err) => {
-      console.log(err);
-    })
+
+    this.tmdbService.search(this.keyword.value!).subscribe({
+      next: (movies: Movie[]) => {
+        this.searchContent = movies;
+        console.log(movies);
+      }
+    });
+
+    // this.tmdbService.search(this.keyword.value!).then((res) => {
+    //   this.searchContent = res.data.results;
+    // }).catch((err) => {
+    //   console.log(err);
+    // })
   }
 }

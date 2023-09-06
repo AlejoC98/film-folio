@@ -7,14 +7,14 @@
         </div>
     </div>
 </div>
-<div class="container-fluid movies-container animate__animated animate__fadeInUp">
+<div class="container-fluid movies-container">
     <div class="container-title">
         <h1 class="text-white text-center">Popular Movies</h1>
     </div>
     <div class="row">
-        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-1" *ngFor="let movie of popularMovies">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-1" *ngFor="let movie of trendingMovies">
             <c-card>
-                <img cCardImg="top" src='https://image.tmdb.org/t/p/w500/{{ movie.poster_path}}' >
+                <img cCardImg="top" src='https://image.tmdb.org/t/p/original/{{ movie.poster_path}}' >
                 <c-card-body>
                     <h3 cCardTitle>{{ movie.title }}</h3>
                 </c-card-body>

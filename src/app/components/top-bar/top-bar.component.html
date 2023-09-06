@@ -37,7 +37,7 @@
     <c-modal-body>
         <input type="text" class="modal-search-input" [formControl]="keyword" placeholder="Search..." (keyup.enter)="serachMovie()" autofocus>
         <div class="container search-container">
-            <app-list-group [list]="searchContent"></app-list-group>
+            <app-list-group [list]="searchContent!"></app-list-group>
             <!-- <app-list-group></app-list-group> -->
         </div>
     </c-modal-body>

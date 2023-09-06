@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './modules/app-routing.module';
@@ -16,6 +16,9 @@ import { CardComponent } from './components/card/card.component';
 import { ListGroupComponen } from './components/list-group/list-group.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { NgxStarsModule } from 'ngx-stars';
+import { HttpClientModule } from '@angular/common/http';
+import { register } from 'swiper/element/bundle';
+register();
 
 @NgModule({
   declarations: [
@@ -36,10 +39,12 @@ import { NgxStarsModule } from 'ngx-stars';
     FontAwesomeModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    NgxStarsModule
+    NgxStarsModule,
+    HttpClientModule
   ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
