@@ -54,7 +54,14 @@
                     <div class="col-md-12">
                         <h3>Rating</h3>
                         <div class="block">
-                            <ngx-stars [readonly]="false" [size]="2" [maxStars]="5" [color]="'#FFD700'"></ngx-stars>
+                            <ngx-stars 
+                                [readonly]="false" 
+                                [size]="2" 
+                                [maxStars]="5" 
+                                [color]="'#FFD700'"
+                                [initialStars]="ratingDisplay"
+                                (ratingOutput)="onRatingSet($event)"
+                            />
                         </div>
                     </div>
                 </div>
@@ -89,9 +96,9 @@
                         <h3>Comments</h3>
                         <div class="block">
                             <div class="comment-form">
-                                <textarea name="comment" placeholder="Comment..." id="" cols="30" rows="5"></textarea>
+                                <textarea [formControl]="movieReviewFc" name="comment" placeholder="Comment..." id="" cols="30" rows="5"></textarea>
                                 <div class="submit-btn-container">
-                                    <button cButton color="primary" shape="rounded-pill">
+                                    <button cButton color="primary" shape="rounded-pill" (click)="submitMovieReview()">
                                         <fa-icon [icon]="faPaperPlane"></fa-icon>
                                     </button>
                                 </div>

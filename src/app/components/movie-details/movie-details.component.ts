@@ -4,6 +4,9 @@ import { Movie, MovieCast, MovieReviews, MovieTrailer } from 'src/app/interfaces
 import { TMDBService } from 'src/app/services/tmdb.service';
 import { faChevronLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -19,6 +22,7 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
+    private authService: AuthService,
     private sanitizer: DomSanitizer
   ) {
     this.movieID = this.route.snapshot.params['id'];
@@ -26,21 +30,33 @@ export class MovieDetailsComponent implements OnInit {
 
   @Input()
 
+  // Icons
   faChevronLeft = faChevronLeft;
   faPaperPlane = faPaperPlane;
+
+  // Variables
   movieRate: number = 0;
   releaseDate: Date = new Date();
-  
+  ratingDisplay: number = 0;
   movie: Movie | undefined;
   movieTrailer: MovieTrailer | undefined;
   movieCast: MovieCast[] = [];
   movieReviews: MovieReviews[] = [];
 
-  getYoutubeEmbedURL(): SafeResourceUrl {
+  // Forms
+  movieReviewFc = new FormControl('');
 
+  getYoutubeEmbedURL(): SafeResourceUrl {
     const url = `https://www.youtube.com/embed/${this.movieTrailer?.key}?controls=0`;
-    
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  onRatingSet(rating: number): void {
+    this.tmdbService.createMovieRating(this.movieID, rating);
+  }
+
+  submitMovieReview(): void {
+    this.tmdbService.createMovieReview('sdfsdfvc', {username: 'alejo'}, this.movieReviewFc.value!);
   }
 
   ngOnInit(): void {

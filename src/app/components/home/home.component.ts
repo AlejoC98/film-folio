@@ -15,9 +15,7 @@ export class HomeComponent implements OnInit {
   constructor (
     public authService: AuthService,
     private tmdbService: TMDBService
-  ) {
-    // this.tmdbService.createSession();
-  }
+  ) {}
   
   ngOnInit(): void {
     this.tmdbService.getTrendingMovies().subscribe({

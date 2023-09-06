@@ -19,6 +19,9 @@ import { NgxStarsModule } from 'ngx-stars';
 import { HttpClientModule } from '@angular/common/http';
 import { register } from 'swiper/element/bundle';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { TmdbcallbackComponent } from './components/tmdbcallback/tmdbcallback.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 register();
 
 @NgModule({
@@ -31,7 +34,8 @@ register();
     CardComponent,
     ListGroupComponen,
     MovieDetailsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    TmdbcallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -41,11 +45,12 @@ register();
     FontAwesomeModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     NgxStarsModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot(),
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

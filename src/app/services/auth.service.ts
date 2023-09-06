@@ -7,12 +7,23 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  private isTMDBAuthenticated = false;
+  // public readonly userCredentials = {} | undefined;
+
   constructor(
     private fbAuth: AngularFireAuth,
     private route: Router
-  ) {}
+  ) { }
 
-  login(username: string, password: string) {
+  setAuthenticated(value: boolean) {
+    this.isTMDBAuthenticated = value;
+  }
+
+  isAuthenticatedUser(): boolean {
+    return this.isTMDBAuthenticated;
+  }
+
+  login(username: string, password: string): Promise<any> {
     return this.fbAuth.signInWithEmailAndPassword(username, password);
   }
 

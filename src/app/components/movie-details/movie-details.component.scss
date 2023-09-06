@@ -96,10 +96,13 @@
                         background: transparent;
                         color: #ffffff;
                         padding: .5rem;
+                        resize: none;
                     }
     
                     textarea:focus-visible {
+                        border: none;
                         outline: 1px solid #D01B59;
+                        box-shadow: 2px 5px 10px #D01B59;
                     }
 
                     // .submit-btn-container {
@@ -161,6 +164,7 @@ swiper-slide.swiper-slide-active {
 
 swiper-slide:hover .hover-info {
     display: grid;
+    text-align: center;
     place-items: center;
 }
 

@@ -27,9 +27,10 @@ export class LoginComponent {
   Authentication() {
     const { username, password } = this.login.value;
     this.authService.login(username!, password!).then((userCredentials)  => {
+      console.log(userCredentials);
       this.route.navigate(['./Home']);
     }).catch((error) => {
-      console.log(error);
+      console.log(error.message);
     });
   }
 
