@@ -1,7 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Josefin+Sans&family=Lobster&family=Saira+Stencil+One&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Josefin+Sans&family=Lobster&family=Saira+Stencil+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Courgette&family=Roboto+Slab&family=Saira+Stencil+One&family=Sedgwick+Ave+Display&display=swap');
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "../node_modules/animate.css/animate.css";
 @import "../node_modules/swiper/swiper-bundle.css";
+
+$base-color: #202731;
+$gamboge: #ea9e19;
+
+body {
+    background-color: $base-color;
+}
 
 .circle-btn {
     width: 2.8rem;
@@ -30,4 +38,159 @@
     border-radius: 10px;
     padding: 1.5rem 1rem;
     margin-bottom: 1.5rem;
+}
+
+.btn-outline-effect {
+    background-color: $gamboge;
+    color: #ffffff;
+}
+
+.btn-join {
+    border-color: #ea9e19;
+    color: #ea9e19;
+    transition: all .2 ease-in-out;
+}
+
+.btn-join:hover {
+    border-color: #ea9e19;
+    background-color: #ea9e19;
+    color: #ffffff;
+
+}
+
+.btn-login {
+    background-color: #ea9e19;
+    color: #ffffff;
+    transition: all .2 ease-in-out;
+}
+
+.btn-login:hover {
+    background-color: #d28d15;
+}
+
+input.auth-input {
+    background: transparent;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    border-radius: 0%;
+}
+
+input.auth-input::placeholder {
+    color: #c5c5c5;
+}
+
+input.auth-input:focus, input.auth-input:focus-visible {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #01ACB4;
+    box-shadow: none;
+    outline: none;
+    color: #ffffff;
+}
+
+input.auth-input:focus + fa-icon, input.auth-input:focus-visible + fa-icon {
+    color: #01ACB4;
+}
+
+.custom-btn {
+    color: #fff;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+}
+
+.btn-outline-effect {
+    background-color: rgba(234, 158, 25, 1);
+    line-height: 42px;
+    padding: 0;
+    border: none;
+
+}
+
+.btn-outline-effect span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.btn-outline-effect:before,
+.btn-outline-effect:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    background: rgba(234, 158, 25, 1);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-effect:before {
+    height: 0%;
+    width: 2px;
+}
+
+.btn-outline-effect:after {
+    width: 0%;
+    height: 2px;
+}
+
+.btn-outline-effect:hover {
+    background: transparent;
+    box-shadow: none;
+}
+
+.btn-outline-effect:hover:before {
+    height: 100%;
+}
+
+.btn-outline-effect:hover:after {
+    width: 100%;
+}
+
+.btn-outline-effect span:hover {
+    color: rgba(234, 158, 25, 1);
+}
+
+.btn-outline-effect span:before,
+.btn-outline-effect span:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    background: rgba(234, 158, 25, 1);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-effect span:before {
+    width: 2px;
+    height: 0%;
+}
+
+.btn-outline-effect span:after {
+    width: 0%;
+    height: 2px;
+}
+
+.btn-outline-effect span:hover:before {
+    height: 100%;
+}
+
+.btn-outline-effect span:hover:after {
+    width: 100%;
+}
+
+input[type="number"].number-input::-webkit-inner-spin-button,
+input[type="number"].number-input::-webkit-outer-spin-button,
+input[type="number"].number-input::-webkit-clear-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
 }

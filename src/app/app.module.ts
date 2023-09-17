@@ -24,6 +24,8 @@ import { TmdbcallbackComponent } from './components/tmdbcallback/tmdbcallback.co
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AuthComponent } from './components/auth/auth.component';
 import { ParallaxDirective } from './common/parallax.directive';
+import { SignupComponent } from './components/signup/signup.component';
+import { FooterComponent } from './components/footer/footer.component';
 register();
 
 @NgModule({
@@ -39,7 +41,9 @@ register();
     ReviewsComponent,
     TmdbcallbackComponent,
     AuthComponent,
-    ParallaxDirective
+    ParallaxDirective,
+    SignupComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
