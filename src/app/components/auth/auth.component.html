@@ -1,3 +1,68 @@
 <div class="auth-container">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et voluptas dolores dignissimos optio expedita, nostrum rerum tempore maxime nulla saepe nobis voluptatum eaque fugit voluptate totam qui debitis a hic.
+    <section class="access-row">
+        <button [routerLink]="['/Login']" class="btn btn-login">Login</button>
+        <button [routerLink]="['/SignUp']" class="btn btn-join">Join</button>
+    </section>
+    <section class="video-container" id="video-banner">
+        <video autoplay [muted]="'muted'">
+            <source src="https://filmfolio.s3.us-east-2.amazonaws.com/FilmFolio.mp4" type="video/mp4">
+        </video>
+        <h1 id="title">
+            FilmFolio
+        </h1>
+        <div class="content-arrow">
+            <fa-icon (click)="scrollDown()" class="animate__animated animate__bounce animate__infinite" [icon]="faAngleDown"></fa-icon>
+        </div>
+        <div class="divider"></div>
+    </section>
+    <section class="container-fluid ads-container">
+        <section 
+            appParallax
+            id="trailers" 
+            [factor]="10" 
+            [distance]="800"
+            class="trailer-sec"
+            [direction]="'right'" 
+        >
+            <div class="sec-description">
+                <h1>Explore the Latest Movie Trailers</h1>
+                <p>Lights, camera, action! Immerse yourself in the excitement of upcoming movies. Watch trailers, get to know the star-studded casts, find out release dates, and check out ratings. Your cinematic journey starts here.</p>
+            </div>
+           <div class="">
+            <img src="../../../assets/images/trailers-w.png" alt="">
+           </div>
+        </section>
+        <section 
+            appParallax
+            id="ratings" 
+            [factor]="12" 
+            [distance]="-1000"
+            class="rating-sec" 
+            [direction]="'left'"
+        >
+            <div class="">
+             <img src="../../../assets/images/rate-m.png" alt="">
+            </div>
+            <div class="sec-description">
+                <h1>Love It or Hate It: Rate Movies</h1>
+                <p>Love movies? Share your thoughts! Rate and review your favorite films to help fellow movie enthusiasts find their next great watch. Join our movie community and let your voice be heard.</p>
+            </div>
+        </section>
+        <section 
+            appParallax
+            id="comments" 
+            [factor]="14" 
+            [distance]="1800"
+            class="comments-sec"
+            [direction]="'right'" 
+        >
+            <div class="sec-description">
+                <h1>Design Your Movie Viewing List</h1>
+                <p>Make your movie wishes come true! With our watchlist tool, you can curate a lineup of films that excite you. Whether it's classics or new releases, it's all in your personalized watchlist.</p>
+            </div>
+            <div class="">
+                <img src="../../../assets/images/movie-list.png" alt="">
+            </div>
+        </section>
+    </section>
 </div>

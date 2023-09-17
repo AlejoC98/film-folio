@@ -23,6 +23,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TmdbcallbackComponent } from './components/tmdbcallback/tmdbcallback.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AuthComponent } from './components/auth/auth.component';
+import { ParallaxDirective } from './common/parallax.directive';
 register();
 
 @NgModule({
@@ -37,7 +38,8 @@ register();
     MovieDetailsComponent,
     ReviewsComponent,
     TmdbcallbackComponent,
-    AuthComponent
+    AuthComponent,
+    ParallaxDirective
   ],
   imports: [
     BrowserModule,
