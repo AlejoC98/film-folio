@@ -5,9 +5,11 @@ import { HomeComponent } from '../components/home/home.component';
 import { authGuard } from '../guards/auth.guard';
 import { MovieDetailsComponent } from '../components/movie-details/movie-details.component';
 import { TmdbcallbackComponent } from '../components/tmdbcallback/tmdbcallback.component';
+import { AuthComponent } from '../components/auth/auth.component';
 
 const routes: Routes = [
-  { path: '',  redirectTo: 'Login', pathMatch: 'full'},
+  // { path: '',  redirectTo: 'Login', pathMatch: 'full'},
+  { path: '', component: AuthComponent},
   { path: 'Login', component: LoginComponent, canActivate: [ authGuard ] },
   { path: 'Home', component: HomeComponent, canActivate: [ authGuard ] },
   { path: 'Movie/:id', component: MovieDetailsComponent },

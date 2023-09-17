@@ -22,6 +22,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TmdbcallbackComponent } from './components/tmdbcallback/tmdbcallback.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AuthComponent } from './components/auth/auth.component';
 register();
 
 @NgModule({
@@ -35,7 +36,8 @@ register();
     ListGroupComponen,
     MovieDetailsComponent,
     ReviewsComponent,
-    TmdbcallbackComponent
+    TmdbcallbackComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
