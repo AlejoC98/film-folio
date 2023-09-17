@@ -1,1 +1,132 @@
-<p>signup works!</p>
+<div class="signup-container">
+    <div class="auth-header">
+        <div class="logo" [routerLink]="['/']">
+            <img width="40" src="../../../assets/images/logo.PNG" alt="">
+            <span>ilmFolio</span>
+        </div>
+        <div class="auth-actions">
+            <button [routerLink]="['/Login']" class="btn btn-join">Login</button>
+        </div>
+    </div>
+    <div class="form-container">
+        <h1>Join Us!</h1>
+        <form (ngSubmit)="SignUp()" [formGroup]="signup">
+            <div class="row">
+                <div class="col-12 profile-container">
+                    <label for="profile">
+                        <img 
+                            width="150" 
+                            [src]="profileUrl === undefined ? '../../../assets/images/default-profile.jpg' : profileUrl"
+                            alt="" 
+                        >
+                    <div class="profile-cover">
+                        <fa-icon [icon]="faCamera"></fa-icon>
+                    </div>
+                    </label>
+                    <input type="file" name="profile" id="profile" hidden (change)="loadProfile($event)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field>
+                        <input formControlName="firstname" type="text" class="form-control auth-input" name="firstname"
+                            placeholder="Firstname">
+                        <mat-error class="text-danger"
+                            *ngIf="signup.get('firstname')?.touched && signup.get('firstname')?.hasError('required')">
+                            First Name is required!
+                        </mat-error>
+                        <mat-error class="text-danger" *ngIf="signup.get('firstname')?.hasError('minlength')">
+                            First Name should be at least 3 characters long!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field>
+                        <input formControlName="lastname" type="text" class="form-control auth-input" name="lastname"
+                            placeholder="Lastname">
+                        <mat-error class="text-danger"
+                            *ngIf="signup.get('lastname')?.touched && signup.get('lastname')?.hasError('required')">
+                            Last Name is required!
+                        </mat-error>
+                        <mat-error class="text-danger" *ngIf="signup.get('lastname')?.hasError('minlength')">
+                            Last Name should be at least 3 characters long!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field>
+                        <input formControlName="email" type="email" class="form-control auth-input" name="email"
+                            placeholder="Email">
+                        <mat-error class="text-danger" *ngIf="signup.get('email')?.hasError('email')">
+                            Invalid email format!
+                        </mat-error>
+                        <mat-error class="text-danger"
+                            *ngIf="signup.get('email')?.touched && signup.get('email')?.hasError('required')">
+                            Email is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field>
+                        <input formControlName="phone" type="number" class="form-control auth-input number-input"
+                            name="phone" placeholder="Phone Number">
+                        <mat-error class="text-danger" *ngIf="signup.get('phone')?.hasError('pattern')">
+                            Phone should only contain numbers!
+                        </mat-error>
+                        <mat-error class="text-danger"
+                            *ngIf="signup.get('phone')?.touched && signup.get('phone')?.hasError('required')">
+                            Phone is required!
+                        </mat-error>
+                        <mat-error class="text-danger"
+                            *ngIf="signup.get('phone')?.hasError('minlength')">
+                            Phone number should be exactly 10 digits long!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 form-control-btn">
+                    <mat-form-field>
+                        <input formControlName="password" [type]="showPassword ? 'text' : 'password'" class="form-control auth-input" name="password" placeholder="Password" (focus)="showPassCriteria = true">
+                        <button (click)="showPassword = !showPassword" class="input-password-btn">
+                            <fa-icon [icon]="showPassword ? faEyeSlash : faEye"></fa-icon>
+                        </button>
+                        <mat-error class="password-criteria" *ngIf="showPassCriteria && signup.get('password')?.value !== ''">
+                            <span>Password Criteria:</span>
+                            <ul>
+                                <li 
+                                *ngFor="let criterion of getPasswordStrengthCriteria(signup.get('password')!)">
+                                <span [ngClass]="{'text-success': criterion.includes('✓'), 'text-danger': criterion.includes('✗')}">{{ criterion }}</span>
+                                </li>
+                            </ul>
+                          </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 form-control-btn">
+                    <mat-form-field>
+                        <input required formControlName="confirmPassword" [type]="showConfirmPassword ? 'text' : 'password'" class="form-control auth-input" name="confirmPassword" placeholder="Confirm Password">
+                        <button (click)="showConfirmPassword = !showConfirmPassword" class="input-password-btn">
+                            <fa-icon [icon]="showConfirmPassword ? faEyeSlash : faEye"></fa-icon>
+                        </button>
+                        <mat-error class="text-danger" *ngIf="signup.get('confirmPassword')?.hasError('match')">
+                            Password doesn't match
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row signup-row">
+                <div class="col-12 d-grid gap-2">
+                    <button [disabled]="!this.signup.valid" class="btn custom-btn btn-outline-effect">
+                        <span>
+                            Sign Up
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

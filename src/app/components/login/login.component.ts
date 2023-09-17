@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { faRightToBracket, faKey, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faRightToBracket, faKey, faUser, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class LoginComponent {
   faRightToBracket = faRightToBracket;
   faKey = faKey;
   faUser = faUser;
+  faChevronLeft = faChevronLeft;
 
   constructor(
     private authService: AuthService,
@@ -32,6 +33,10 @@ export class LoginComponent {
     }).catch((error) => {
       console.log(error.message);
     });
+  }
+
+  googleLogin(): void {
+    // this.authService.GoogleAuth();
   }
 
 }
