@@ -43,7 +43,7 @@ export class SignupComponent {
   SignUp(): void {
     const { firstname, lastname, email, phone, password } = this.signup.value;
     if (this.signup.valid) {
-      // this.authService.register(firstname!, lastname!, email!, phone!, password!, this.profileImg!);
+      this.authService.register(firstname!, lastname!, email!, phone!, password!, this.profileImg!);
     } else {
       console.log('there\'s some errors!');
     } 
