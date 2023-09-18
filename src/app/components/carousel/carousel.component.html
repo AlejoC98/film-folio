@@ -1,4 +1,4 @@
-<c-carousel>
+<c-carousel [interval]="5000">
     <c-carousel-indicators></c-carousel-indicators>
     <c-carousel-inner>
       <c-carousel-item *ngFor="let slide of slides">
@@ -7,7 +7,7 @@
           class="d-block w-100"
           loading="lazy"
           src="https://image.tmdb.org/t/p/original/{{slide.src}}"
-          height="500"
+          height="800"
           width="600"
         />
         <c-carousel-caption class="d-none d-md-block">

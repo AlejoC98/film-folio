@@ -13,7 +13,6 @@ import { finalize } from 'rxjs';
 export class AuthService {
 
   private isTMDBAuthenticated = false;
-  public userCredentials!: User;
   private GoogleProvider = new GoogleAuthProvider();
 
   constructor(
@@ -24,29 +23,12 @@ export class AuthService {
 
   GoogleAuth() {
     this.fbAuth.signInWithPopup(this.GoogleProvider).then((res) => {
-      this.userCredentials = {
-        displayName: res.user!.displayName,
-        email: res.user!.email,
-        emailVerified: res.user!.emailVerified,
-        isAnonymous: res.user!.isAnonymous,
-        metadata: res.user!.metadata,
-        phoneNumber: res.user!.phoneNumber,
-        photoURL: res.user!.photoURL,
-        providerData: res.user!.providerData,
-        providerId: res.user!.providerId,
-        refreshToken: res.user!.refreshToken,
-        tenantId: res.user!.tenantId,
-        uid: res.user!.uid,
-      };
-
       this.route.navigate(['./Home']);
 
     }).catch((error) => {
       console.log(error);
     });
   }
-
-
 
   setAuthenticated(value: boolean) {
     this.isTMDBAuthenticated = value;
@@ -89,7 +71,8 @@ export class AuthService {
         });
       }
 
-      this.userCredentials = regStatus;
+      // this.userCredentials = regStatus;
+      console.log(regStatus);
 
       this.route.navigate(['./Home']);
     }
