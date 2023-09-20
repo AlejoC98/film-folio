@@ -176,3 +176,7 @@ swiper-slide img {
     object-position: top;
     border-radius: 50%;
 }
+
+ngx-stars .stars-line div:hover {
+    transform: scale(1.2) rotate(-10deg);
+}

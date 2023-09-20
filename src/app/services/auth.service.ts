@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs';
 
 
 @Injectable({
@@ -14,12 +13,17 @@ export class AuthService {
 
   private isTMDBAuthenticated = false;
   private GoogleProvider = new GoogleAuthProvider();
+  public currentUser: User | undefined;
 
   constructor(
     private fbAuth: AngularFireAuth,
     private fbStorage: AngularFireStorage,
     private route: Router
-  ) {}
+  ) {
+    this.fbAuth.authState.subscribe((user) => {
+      this.currentUser = user!;
+    })
+  }
 
   GoogleAuth() {
     this.fbAuth.signInWithPopup(this.GoogleProvider).then((res) => {
@@ -38,8 +42,11 @@ export class AuthService {
     return this.isTMDBAuthenticated;
   }
 
-  login(username: string, password: string): Promise<any> {
-    return this.fbAuth.signInWithEmailAndPassword(username, password);
+  async login(username: string, password: string): Promise<any> {
+    const credentials = await this.fbAuth.signInWithEmailAndPassword(username, password);
+    this.currentUser = credentials.user!;
+    console.log(credentials.user);
+    return credentials;
   }
 
   logout() {

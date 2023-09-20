@@ -28,13 +28,20 @@
 
 .review-container {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
 
     .author-profile {
         padding: .5rem;
+        margin-right: 1rem;
         img {
             border-radius: 50%;
             height: 80px;
         }
     }
+}
+
+c-nav {
+  c-nav-item a {
+    color: #ffffff;
+  }
 }

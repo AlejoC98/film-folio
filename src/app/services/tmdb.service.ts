@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Movie, MovieCast, MovieReviews, MovieTrailer } from '../interfaces/movie';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class TMDBService {
 
   constructor(
     private http: HttpClient,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private authService: AuthService
   ) {
     this.headers = new HttpHeaders({
       Accept: 'application/json:charset=utf-8',
@@ -115,7 +117,7 @@ export class TMDBService {
     )
   }
 
-  getMovieReviews(id: string): Observable<any> {
+  getGlobalMovieReviews(id: string): Observable<any> {
     return this.http.get<any>(`https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&page=1`, {
       headers: this.headers
     }).pipe(
@@ -125,23 +127,115 @@ export class TMDBService {
     )
   }
 
-  createMovieRating(id: string, rate: number): void {
+  getLocalMovieReviews(movieId: string): Observable<any> {
+    const reviewCollection = this.db.collection('movie-reviews', ref => ref.where('movie_id', '==', movieId));
 
-    this.db.collection('movie-rates').add({
-      'movie_id': id,
-      'rate': rate
-    });
+    return reviewCollection.get().pipe(
+      map((data: any) => {
+        const doc = data.docs;
+        return doc[0].data();
+      })
+    )
   }
 
-  createMovieReview(id: string, user: Object, comment: string): void {
-    this.db.collection('movie-reviews').add({
-      'movie_id': id,
-      'reviews': [
-        {
-          'user': user,
-          'review': comment
+  createMovieReview(movieId: string, comment: string, rate: number | undefined) {
+
+    const insert = {
+      'id': '',
+      'updated_at': new Date().toLocaleDateString('en-US'),
+      'url': '',
+      'userui': this.authService.currentUser?.uid,
+      'author': this.authService.currentUser?.displayName,
+      'author_details': {
+        'avatar_path': this.authService.currentUser?.photoURL,
+        'rating': rate != undefined ? rate : 0
+      },
+      'content': comment,
+      'created_at': new Date().toLocaleDateString('en-US')
+    }
+    
+    const query = this.db.collection('movie-reviews', ref => ref.where('movie_id', '==', movieId));
+    
+    query.get().subscribe(querySnapshot => {
+      if (!querySnapshot.empty) {
+        const doc = querySnapshot.docs[0];
+        const currentData = Object(doc.data());
+        let currentUserReview = currentData.reviews.find((u: { userui: string | null; }) => u.userui === this.authService.currentUser!.uid);
+
+        currentData.reviews.push(insert);
+        // if (!currentUserReview) {
+        // }
+
+        doc.ref.update({
+          reviews: currentData.reviews
+        });
+      } else {
+        this.db.collection('movie-reviews').add({
+          'movie_id': movieId,
+          'reviews': [insert]
+        });
+      }
+    })
+
+    return insert;
+  }
+
+  getMovieRating(movieId: string): Observable<number> {
+
+    const rateCollection = this.db.collection('movie-rates', ref => ref.where('movie_id', '==', movieId));
+
+    return rateCollection.get().pipe(
+      map((data: any) => {
+        if (!data.empty) {
+          const doc = data.docs;
+          const currentData = Object(doc[0].data());
+
+          return currentData.rate;
         }
-      ]
+        return 0;
+      })
+    )
+
+  }
+
+  createMovieRating(id: string, rate: number): void {
+    const query = this.db.collection('movie-rates', ref => ref.where('movie_id', '==', id));
+    query.get().subscribe(querySnapshot => {
+      if (!querySnapshot.empty) {
+        const doc = querySnapshot.docs[0];
+        const currentData = Object(doc.data());
+        let currentUserRate = currentData.users.find((u: { userui: string | null; }) => u.userui === this.authService.currentUser!.uid);
+
+        if (!currentUserRate) {
+          currentData.users.push({
+            'userui': this.authService.currentUser!.uid,
+            'rate': rate
+          });
+        } else {
+          currentUserRate.rate = rate;
+        }
+
+        let calculateRate = currentData.rate + rate;
+
+        calculateRate = calculateRate / currentData.users.length;
+
+        // Updating rate
+        doc.ref.update({
+          rate: calculateRate,
+          users: currentData.users
+        });
+      } else {
+        this.db.collection('movie-rates').add({
+          'movie_id': id,
+          'rate': rate,
+          'users': [
+            {
+              'userui': this.authService.currentUser!.uid,
+              'rate': rate
+            }
+          ]
+        });
+      }
     });
   }
 

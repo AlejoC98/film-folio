@@ -52,14 +52,15 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <h3>Rating</h3>
+                        <h3>Our Rating</h3>
                         <div class="block">
                             <ngx-stars 
-                                [readonly]="false" 
+                                *ngIf="ratingDisplay != undefined"
+                                [readonly]="ratingDisplay != undefined ? true: false" 
                                 [size]="2" 
                                 [maxStars]="5" 
                                 [color]="'#FFD700'"
-                                [initialStars]="ratingDisplay"
+                                [initialStars]="ratingDisplay!"
                                 (ratingOutput)="onRatingSet($event)"
                             />
                         </div>
@@ -103,7 +104,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <app-reviews [list]="movieReviews"></app-reviews>
+                            <app-reviews [local]="localMovieReviews" [global]="globalMovieReviews"></app-reviews>
                         </div>
                     </div>
                 </div>

@@ -66,16 +66,27 @@ export interface MovieCast {
 }
 
 export interface MovieReviews {
-    author: string;
-    author_details: {
-        name: string,
-        username: string,
-        avatar_path: string,
-        rating: number
-    },
-    content: string;
-    created_at: string;
+    // author: string;
+    // author_details: {
+    //     name: string,
+    //     username: string,
+    //     avatar_path: string,
+    //     rating: number
+    // },
+    // content: string;
+    // created_at: string;
+    // id: string;
+    // updated_at: string;
+    // url: string;
     id: string;
     updated_at: string;
     url: string;
+    userui: string | null | undefined;
+    author?: string | null | undefined; // Make author property optional
+    author_details: {
+      avatar_path: string | null | undefined;
+      rating: number;
+    };
+    content: string;
+    created_at: string;
 }

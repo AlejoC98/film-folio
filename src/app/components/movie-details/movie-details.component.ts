@@ -35,13 +35,14 @@ export class MovieDetailsComponent implements OnInit {
   faPaperPlane = faPaperPlane;
 
   // Variables
-  movieRate: number = 0;
+  movieRate: number | undefined;
   releaseDate: Date = new Date();
-  ratingDisplay: number = 0;
+  ratingDisplay: number | undefined;
   movie: Movie | undefined;
   movieTrailer: MovieTrailer | undefined;
   movieCast: MovieCast[] = [];
-  movieReviews: MovieReviews[] = [];
+  globalMovieReviews: MovieReviews[] = [];
+  localMovieReviews: MovieReviews[] = [];
 
   // Forms
   movieReviewFc = new FormControl('');
@@ -53,10 +54,15 @@ export class MovieDetailsComponent implements OnInit {
 
   onRatingSet(rating: number): void {
     this.tmdbService.createMovieRating(this.movieID, rating);
+    this.movieRate = rating;
   }
 
   submitMovieReview(): void {
-    this.tmdbService.createMovieReview('sdfsdfvc', {username: 'alejo'}, this.movieReviewFc.value!);
+    let data = this.tmdbService.createMovieReview(this.movieID, this.movieReviewFc.value!, this.movieRate);
+    let newReview: MovieReviews = data;
+    this.localMovieReviews.push(newReview);
+
+    this.movieReviewFc.reset();
   }
 
   ngOnInit(): void {
@@ -71,9 +77,23 @@ export class MovieDetailsComponent implements OnInit {
         this.tmdbService.getMovieCast(this.movieID).subscribe({
           next: (cast: MovieCast[]) => this.movieCast = cast
         });
-        // Movie Reviews
-        this.tmdbService.getMovieReviews(this.movieID).subscribe({
-          next: (reviews: MovieReviews[]) => this.movieReviews = reviews
+        // Global Movie Reviews
+        this.tmdbService.getGlobalMovieReviews(this.movieID).subscribe({
+          next: (reviews: MovieReviews[]) => this.globalMovieReviews = reviews
+        });
+        // Local Movie Reviews
+        this.tmdbService.getLocalMovieReviews(this.movieID).subscribe({
+          next: (reviews: any) => {
+            this.localMovieReviews = reviews.reviews;
+            // console.log(reviews.reviews);
+          }
+        });
+        // Get movie rates
+        this.tmdbService.getMovieRating(this.movieID).subscribe({
+          next: (rate: number) => {
+            this.ratingDisplay = rate;
+            this.movieRate = rate;
+          }
         });
       }
     });
