@@ -26,6 +26,8 @@ import { AuthComponent } from './components/auth/auth.component';
 import { ParallaxDirective } from './common/parallax.directive';
 import { SignupComponent } from './components/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
+
+import { NgxSpinnerModule } from 'ngx-spinner';
 register();
 
 @NgModule({
@@ -55,6 +57,7 @@ register();
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     NgxStarsModule,
+    NgxSpinnerModule,
     HttpClientModule,
     SweetAlert2Module.forRoot(),
   ],

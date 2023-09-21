@@ -7,6 +7,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormControl } from '@angular/forms';
 import { faCirclePlay } from '@fortawesome/free-regular-svg-icons';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class MovieDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
     private authService: AuthService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private spinner: NgxSpinnerService
   ) {
     this.movieID = this.route.snapshot.params['id'];
   }
@@ -56,12 +58,7 @@ export class MovieDetailsComponent implements OnInit {
   // Forms
   movieReviewFc = new FormControl('');
 
-  // getYoutubeEmbedURL(trailer: Object) {
-  //   console.log(trailer);
-  // }
-
   toggleLiveDemo(selected?: MovieTrailer) {
-    console.log(selected);
     this.visible = !this.visible;
     this.selectTrailer = selected;
   }
@@ -89,6 +86,9 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.spinner.show();
+
     this.tmdbService.getMovieDetails(this.movieID).subscribe({
       next: (movie: Movie) => {
         this.movie = movie;
@@ -137,6 +137,8 @@ export class MovieDetailsComponent implements OnInit {
             this.movieRate = rate;
           }
         });
+
+        this.spinner.hide();
       }
     });
 

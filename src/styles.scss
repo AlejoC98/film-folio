@@ -20,17 +20,19 @@ body {
     border-radius: 50%;
     margin: 0 .5rem;
     border: none;
+    transition: all .2s ease-in-out;
     a {
         color: #ffffff;
     } 
 }
 
 .circle-btn:hover {
-    background-color: #41454b !important;
+    // background-color: #41454b !important;
+    background: rgba($color: #41454b, $alpha: .3) !important;
 
-    fa-icon {
-        color: #02d3de;
-    }
+    // fa-icon {
+    //     color: #02d3de;
+    // }
 }
 
 .block {

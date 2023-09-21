@@ -144,6 +144,7 @@ swiper-container.trailers-swiper {
             position: absolute;
             display: none;
             fa-icon {
+                transition: all .2s ease-in-out;
                 font-size: 3rem;
                 color: #ffffff;
             }
@@ -157,6 +158,10 @@ swiper-container.trailers-swiper {
 
         .cover-play {
             display: flex;
+            fa-icon:hover {
+                color: #dddddd;
+                transform: scale(1.1);
+            }
         }
     }
 }

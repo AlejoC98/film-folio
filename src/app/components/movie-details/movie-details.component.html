@@ -23,27 +23,20 @@
         </div>
     </div>
     <div class="container-fluid movie-container">
+        <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+            <p style="font-size: 20px; color: white">Loading...</p>
+        </ngx-spinner>
         <section class="row-trailers">
-            <swiper-container 
-                    class="trailers-swiper" 
-                    pagination="false" 
-                    effect="slide" 
-                    grab-cursor="true"
-                    centered-slides="false" 
-                    slides-per-view="auto"
-                    navigation="true"
-                >
-                    <swiper-slide *ngFor="let trailer of movieTrailer">
-                        <img
-                            width="250"
-                            alt="Video Thumbnail"
-                            [src]="'https://img.youtube.com/vi/'+ trailer.key +'/maxresdefault.jpg'"
-                        />
-                        <div class="cover-play" (click)="toggleLiveDemo(trailer)">
-                            <fa-icon [icon]="faCirclePlay"></fa-icon>
-                        </div>
-                    </swiper-slide>
-                </swiper-container>
+            <swiper-container class="trailers-swiper" pagination="false" effect="slide" grab-cursor="true"
+                centered-slides="false" slides-per-view="auto" navigation="true">
+                <swiper-slide *ngFor="let trailer of movieTrailer">
+                    <img width="250" alt="Video Thumbnail"
+                        [src]="'https://img.youtube.com/vi/'+ trailer.key +'/maxresdefault.jpg'" />
+                    <div class="cover-play" (click)="toggleLiveDemo(trailer)">
+                        <fa-icon [icon]="faCirclePlay"></fa-icon>
+                    </div>
+                </swiper-slide>
+            </swiper-container>
         </section>
         <section class="row row-details">
             <div class="col-md-8">
@@ -59,20 +52,15 @@
             <div class="col-md-2">
                 <h3>Details</h3>
                 <p><strong>Duration:</strong> {{ movie?.runtime}} min</p>
-                <p><strong>Budget:</strong> {{ movieBudget }}</p >
-                <p><strong>Revenue:</strong> {{ movieRevenue }}</p >
+                <p><strong>Budget:</strong> {{ movieBudget }}</p>
+                <p><strong>Revenue:</strong> {{ movieRevenue }}</p>
             </div>
         </section>
         <section class="row row-cast">
             <div class="col-12">
                 <h3>Cast</h3>
-                <swiper-container 
-                    class="cast-swiper" 
-                    pagination="false" 
-                    effect="slide" 
-                    grab-cursor="true"
-                    slides-per-view="auto"
-                >
+                <swiper-container class="cast-swiper" pagination="false" effect="slide" grab-cursor="true"
+                    slides-per-view="auto">
                     <swiper-slide *ngFor="let cast of movieCast">
                         <img src="https://image.tmdb.org/t/p/w500/{{ cast.profile_path }}" alt="">
                         <div class="cast-info">
@@ -87,14 +75,8 @@
             <div class="col-9">
                 <h3>Comments</h3>
                 <div class="comment-form">
-                    <textarea
-                        [formControl]="movieReviewFc" 
-                        name="comment" 
-                        placeholder="Comment..." 
-                        id=""
-                        cols="30" 
-                        rows="5"
-                    ></textarea>
+                    <textarea [formControl]="movieReviewFc" name="comment" placeholder="Comment..." id="" cols="30"
+                        rows="5"></textarea>
                     <div class="d-grid gap-2">
                         <button cButton color="primary" (click)="submitMovieReview()">
                             Submit
@@ -105,15 +87,10 @@
             </div>
             <div class="col-3">
                 <h3>Rating</h3>
-                <ngx-stars 
-                    *ngIf="ratingDisplay != undefined"
-                    [readonly]="ratingDisplay == undefined || ratingDisplay == 0 || movieRate == 0 ? false: true" 
-                    [size]="2" 
-                    [maxStars]="5"
-                    [color]="'#FFD700'" 
-                    [initialStars]="ratingDisplay!" 
-                    (ratingOutput)="onRatingSet($event)"
-                />
+                <ngx-stars *ngIf="ratingDisplay != undefined"
+                    [readonly]="ratingDisplay == undefined || ratingDisplay == 0 || movieRate == 0 ? false: true"
+                    [size]="2" [maxStars]="5" [color]="'#FFD700'" [initialStars]="ratingDisplay!"
+                    (ratingOutput)="onRatingSet($event)" />
             </div>
         </section>
         <section class="row">
@@ -124,7 +101,8 @@
     </div>
 </div>
 
-<c-modal size="xl" class="trailerModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)" alignment="center">
+<c-modal size="xl" class="trailerModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)"
+    alignment="center">
     <c-modal-header>
         <button (click)="toggleLiveDemo()" class="modal-close">
             <fa-icon [icon]="faX"></fa-icon>
@@ -132,7 +110,7 @@
     </c-modal-header>
     <c-modal-body>
         <!-- <object [data]="getYoutubeEmbedURL(selectTrailer?.key)"></object> -->
-        <iframe [src]="getYoutubeEmbedURL(selectTrailer?.key)" id="video">
+        <iframe [src]="getYoutubeEmbedURL(selectTrailer?.key)" id="video" loading="lazy">
         </iframe>
     </c-modal-body>
 </c-modal>
