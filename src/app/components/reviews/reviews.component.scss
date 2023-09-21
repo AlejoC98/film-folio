@@ -28,7 +28,6 @@
 
 .review-container {
     display: flex;
-    // justify-content: space-between;
 
     .author-profile {
         padding: .5rem;
@@ -38,10 +37,29 @@
             height: 80px;
         }
     }
+
+    .review-text{
+      div {
+        display: flex;
+        align-items: center;
+        :first-child {
+          margin-right: 1rem;
+          display: flex;
+        }
+
+        :nth-child(2) {
+          margin-top: .2rem;
+        }
+      }
+    }
 }
 
 c-nav {
   c-nav-item a {
     color: #ffffff;
   }
+}
+
+.no-comments-message {
+  color: #6e6e6e;
 }

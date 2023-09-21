@@ -4,7 +4,7 @@
             Local
         </a>
     </c-nav-item>
-    <c-nav-item class="nav-item">
+    <c-nav-item class="nav-item" *ngIf="global.length > 0">
         <a class="nav-link" [active]="activeTab == 1" [cTabContent]="tabContent" [routerLink] [tabPaneIdx]="1" cNavLink>
             Global
         </a>
@@ -13,7 +13,7 @@
 
 <c-tab-content #tabContent="cTabContent">
     <c-tab-pane class="p-3">
-        <div class="list-container" cListGroup flush>
+        <div class="list-container" cListGroup flush *ngIf="local.length > 0; else commentMessage">
             <a cListGroupItem *ngFor="let review of local" id="{{ review.id }}">
                 <div class="review-container">
                     <div class="author-profile">
@@ -21,17 +21,26 @@
                     </div>
                     <div class="review-text">
                         <span> {{ review.author }} </span>
-                        <span>
-                            <ngx-stars [readonly]="true" [size]="1" [maxStars]="5"
-                                [initialStars]="review.author_details.rating / 2" [color]="'#FFD700'"></ngx-stars>
-                            {{ review.author_details.rating }}
-                        </span>
-                        <span> {{ review.created_at }} </span>
+                        <div>
+                            <span> {{ review.created_at }} </span>
+                            <span *ngIf="review.author_details.rating != 0">
+                                <ngx-stars 
+                                    [size]="1" 
+                                    [maxStars]="5"
+                                    [readonly]="true" 
+                                    [color]="'#FFD700'"
+                                    [initialStars]="review.author_details.rating / 2" 
+                                ></ngx-stars>
+                            </span>
+                        </div>                        
                         <p>{{ review.content }}</p>
                     </div>
                 </div>
             </a>
         </div>
+        <ng-template #commentMessage>
+            <h3 class="no-comments-message">Silence is golden! 🤫 Be the first to break it – share your thoughts!</h3>
+        </ng-template>
     </c-tab-pane>
     <c-tab-pane class="p-3">
         <div class="list-container" cListGroup flush>

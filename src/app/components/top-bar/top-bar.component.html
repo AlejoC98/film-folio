@@ -27,7 +27,7 @@
     </div>
 </c-navbar>
 
-<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+<c-modal class="searchModal" id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
     <c-modal-header>
         <button (click)="toggleLiveDemo()" cButtonClose class="modal-close">
             <fa-icon [icon]="faX"></fa-icon>

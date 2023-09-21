@@ -4,6 +4,9 @@
 }
 
 .movies-container {
+    .container-title {
+        padding: 3rem 0;
+    }
     padding: 0 3rem;
     c-card {
         transition: all .3s ease-in-out;

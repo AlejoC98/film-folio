@@ -6,109 +6,133 @@
         <img src="https://image.tmdb.org/t/p/original{{ movie?.backdrop_path}}" alt="">
         <div class="movie-title animate__animated animate__fadeInLeft">
             <h1>{{ movie?.original_title }}</h1>
-            <p>{{ movie?.tagline }}</p>
-            <p>{{ movie?.overview }}</p>
-            <p class="movie-rating">
+            <p class="release-rate">
+                <span> {{ releaseDate?.getFullYear() }} </span>
                 <ngx-stars [readonly]="true" [color]="'#FFD700'" [initialStars]="4.3" />
-                <span>{{ releaseDate.getFullYear() }}</span>
+            </p>
+            <p class="action-btns">
+                <button class="btn btn-watch">
+                    <fa-icon [icon]="faPlay"></fa-icon>
+                    Watch
+                </button>
+                <button class="btn btn-list">
+                    <fa-icon [icon]="faPlus"></fa-icon>
+                    My List
+                </button>
             </p>
         </div>
     </div>
     <div class="container-fluid movie-container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 movie-information">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Information</h3>
-                        <div class="block">
-                            <div class="row row-poster">
-                                <div class="col-12 movie-poster">
-                                    <img width="100%" src="https://image.tmdb.org/t/p/original{{ movie?.poster_path }}"
-                                        alt="">
-                                </div>
-                                <div class="col-12 movie-genre">
-                                    <span *ngFor="let gen of movie?.genres">
-                                        <c-badge color="secondary">{{ gen.name }}</c-badge>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="row row-info">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="movie-info">
-                                        <p><strong>original language:</strong> {{ movie?.original_language }}</p>
-                                        <p><strong>Duration:</strong> {{ movie?.runtime }}min</p>
-                                        <p><strong>original language:</strong> {{ movie?.original_language }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <h5>Languages</h5>
-                                    <ul>
-                                        <li *ngFor="let language of movie?.spoken_languages">
-                                            {{ language.english_name }}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+        <section class="row-trailers">
+            <swiper-container 
+                    class="trailers-swiper" 
+                    pagination="false" 
+                    effect="slide" 
+                    grab-cursor="true"
+                    centered-slides="false" 
+                    slides-per-view="auto"
+                    navigation="true"
+                >
+                    <swiper-slide *ngFor="let trailer of movieTrailer">
+                        <img
+                            width="250"
+                            alt="Video Thumbnail"
+                            [src]="'https://img.youtube.com/vi/'+ trailer.key +'/maxresdefault.jpg'"
+                        />
+                        <div class="cover-play" (click)="toggleLiveDemo(trailer)">
+                            <fa-icon [icon]="faCirclePlay"></fa-icon>
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <h3>Our Rating</h3>
-                        <div class="block">
-                            <ngx-stars 
-                                *ngIf="ratingDisplay != undefined"
-                                [readonly]="ratingDisplay != undefined ? true: false" 
-                                [size]="2" 
-                                [maxStars]="5" 
-                                [color]="'#FFD700'"
-                                [initialStars]="ratingDisplay!"
-                                (ratingOutput)="onRatingSet($event)"
-                            />
+                    </swiper-slide>
+                </swiper-container>
+        </section>
+        <section class="row row-details">
+            <div class="col-md-8">
+                <h3>Overview</h3>
+                <p>{{ movie?.overview }}</p>
+            </div>
+            <div class="col-md-2">
+                <h3>Genres</h3>
+                <p *ngFor="let gen of movie?.genres">
+                    <c-badge color="secondary">{{ gen.name }}</c-badge>
+                </p>
+            </div>
+            <div class="col-md-2">
+                <h3>Details</h3>
+                <p><strong>Duration:</strong> {{ movie?.runtime}} min</p>
+                <p><strong>Budget:</strong> {{ movieBudget }}</p >
+                <p><strong>Revenue:</strong> {{ movieRevenue }}</p >
+            </div>
+        </section>
+        <section class="row row-cast">
+            <div class="col-12">
+                <h3>Cast</h3>
+                <swiper-container 
+                    class="cast-swiper" 
+                    pagination="false" 
+                    effect="slide" 
+                    grab-cursor="true"
+                    slides-per-view="auto"
+                >
+                    <swiper-slide *ngFor="let cast of movieCast">
+                        <img src="https://image.tmdb.org/t/p/w500/{{ cast.profile_path }}" alt="">
+                        <div class="cast-info">
+                            <h5>{{ cast.original_name }}</h5>
+                            <span>{{ cast.character }}</span>
                         </div>
+                    </swiper-slide>
+                </swiper-container>
+            </div>
+        </section>
+        <section class="row row-comments">
+            <div class="col-9">
+                <h3>Comments</h3>
+                <div class="comment-form">
+                    <textarea
+                        [formControl]="movieReviewFc" 
+                        name="comment" 
+                        placeholder="Comment..." 
+                        id=""
+                        cols="30" 
+                        rows="5"
+                    ></textarea>
+                    <div class="d-grid gap-2">
+                        <button cButton color="primary" (click)="submitMovieReview()">
+                            Submit
+                            <fa-icon [icon]="faPaperPlane"></fa-icon>
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 movie-actions">
-                <div class="row">
-                    <div class="movie-trailer col-12">
-                        <h3>Trailer</h3>
-                        <div class="block video-container">
-                            <iframe [src]="getYoutubeEmbedURL()" id="video">
-                            </iframe>
-                        </div>
-                    </div>
-                    <div class="movie-cast col-12">
-                        <h3>Cast</h3>
-                        <div class="block">
-                            <swiper-container class="mySwiper" pagination="false" effect="coverflow" grab-cursor="true"
-                                centered-slides="true" slides-per-view="auto" coverflow-effect-rotate="50"
-                                coverflow-effect-stretch="0" coverflow-effect-depth="100" coverflow-effect-modifier="1"
-                                coverflow-effect-slide-shadows="false">
-                                <swiper-slide *ngFor="let cast of movieCast">
-                                    <img src="https://image.tmdb.org/t/p/w500/{{ cast.profile_path }}" alt="">
-                                    <div class="hover-info">
-                                        <h5>{{ cast.original_name }}</h5>
-                                        <span>{{ cast.character }}</span>
-                                    </div>
-                                </swiper-slide>
-                            </swiper-container>
-                        </div>
-                    </div>
-                    <div class="movie-comments col-12">
-                        <h3>Comments</h3>
-                        <div class="block">
-                            <div class="comment-form">
-                                <textarea [formControl]="movieReviewFc" name="comment" placeholder="Comment..." id="" cols="30" rows="5"></textarea>
-                                <div class="submit-btn-container">
-                                    <button cButton color="primary" shape="rounded-pill" (click)="submitMovieReview()">
-                                        <fa-icon [icon]="faPaperPlane"></fa-icon>
-                                    </button>
-                                </div>
-                            </div>
-                            <app-reviews [local]="localMovieReviews" [global]="globalMovieReviews"></app-reviews>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-3">
+                <h3>Rating</h3>
+                <ngx-stars 
+                    *ngIf="ratingDisplay != undefined"
+                    [readonly]="ratingDisplay == undefined || ratingDisplay == 0 || movieRate == 0 ? false: true" 
+                    [size]="2" 
+                    [maxStars]="5"
+                    [color]="'#FFD700'" 
+                    [initialStars]="ratingDisplay!" 
+                    (ratingOutput)="onRatingSet($event)"
+                />
             </div>
-        </div>
+        </section>
+        <section class="row">
+            <div class="col-12">
+                <app-reviews [local]="localMovieReviews" [global]="globalMovieReviews"></app-reviews>
+            </div>
+        </section>
     </div>
 </div>
+
+<c-modal size="xl" class="trailerModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)" alignment="center">
+    <c-modal-header>
+        <button (click)="toggleLiveDemo()" class="modal-close">
+            <fa-icon [icon]="faX"></fa-icon>
+        </button>
+    </c-modal-header>
+    <c-modal-body>
+        <!-- <object [data]="getYoutubeEmbedURL(selectTrailer?.key)"></object> -->
+        <iframe [src]="getYoutubeEmbedURL(selectTrailer?.key)" id="video">
+        </iframe>
+    </c-modal-body>
+</c-modal>

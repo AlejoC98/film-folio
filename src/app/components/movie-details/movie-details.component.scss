@@ -17,12 +17,6 @@
             }
         }
 
-        .back-btn:hover {
-            fa-icon {
-                color: #ffffff;
-            }
-        }
-
         img {
             width: 100%;
             object-fit: cover;
@@ -33,18 +27,41 @@
             bottom: 50px;
             width: 100%;
             padding: 0 3rem;
-
             h1 {
                 font-size: 60px;
             }
+        }
 
-            .movie-rating {
-                display: flex;
-                width: 150px;
-                align-items: center;
-                justify-content: space-around;
+        .release-rate {
+            display: inline-flex;
+
+            > span {
+                margin-right: 1rem;
             }
         }
+
+        .action-btns {
+            // background-color: #D01B59;
+            width: 320px;
+            display: flex;
+            justify-content: space-between;
+
+            .btn-watch {
+                // background-color: #ea9e19;
+                background-color: #02d3de;
+                color: #ffffff;
+                border-radius: 3px;
+                padding: .5rem 2.5rem;
+            }
+    
+            .btn-list {
+                background-color: rgba($color: #ffffff, $alpha: .1);
+                color: #ffffff;
+                border-radius: 3px;
+                padding: .5rem 2.5rem;
+            }
+        }
+
     }
 
     .movie-banner::before {
@@ -54,129 +71,125 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 1) 100%);
+        background: linear-gradient(to bottom, rgba(32, 39, 49, 0) 0%, rgba(32, 39, 49, 1) 100%);
         pointer-events: none;
     }
 
     .movie-container {
         padding: 3rem;
+        position: relative;
+        top: -80px;
 
-        .movie-information {
-
-            .row-info {
-
-                >div {
-                    margin-bottom: 1rem;
-                }
-
-                .movie-poster {
-                    img {
-                        width: 100%;
-                    }
-                }
-
-                .movie-genre {
-                    span {
-                        margin-right: .5rem;
-                    }
-                }
-            }
-
+        section {
+            margin-bottom: 3rem;
         }
 
-        .movie-actions {
-            .movie-comments {
-                .comment-form {
-                    margin-bottom: 1rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    textarea {
-                        width: 95%;
-                        background: transparent;
-                        color: #ffffff;
-                        padding: .5rem;
-                        resize: none;
-                    }
+        .row-comments {
+            .comment-form {
+                textarea {
+                    width: 100%;
+                    padding: .5rem 1rem;
+                    background: transparent;
+                    color: #ffffff;
+                }
+
+                button {
+                    background-color: #ea9e19;
+                    border: #ea9e19;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}
+
+swiper-container.cast-swiper {
+    width: 100%;
+    swiper-slide {
+        width: 400px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     
-                    textarea:focus-visible {
-                        border: none;
-                        outline: 1px solid #D01B59;
-                        box-shadow: 2px 5px 10px #D01B59;
-                    }
+        img {
+            display: block;
+            max-width: 100px;
+            max-height: 100px;
+            min-width: 100px;
+            min-height: 100px;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 50%;
+        }
+    
+        .cast-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+    }
+}
+swiper-container.trailers-swiper {
+    
+    swiper-slide {
+        transition: all .2s ease-in-out;
+        width: 300px;
+        display: grid;
+        place-items: center;
+        position: relative;
 
-                    // .submit-btn-container {
-                    //     button {
-                    //     }
-                    // }
-                }
-
+        .cover-play {
+            position: absolute;
+            display: none;
+            fa-icon {
+                font-size: 3rem;
+                color: #ffffff;
             }
         }
 
-        .video-container {
-            display: grid;
-            place-items: center;
-            min-height: 400px;
+    }
 
-            #video {
-                width: 100%;
-                // height: 100%;
-                min-height: 400px;
-            }
+    swiper-slide:hover {
+        transform: scale(1.2);
+        cursor: pointer;
+
+        .cover-play {
+            display: flex;
         }
-
     }
 }
 
-swiper-container {
-    width: 100%;
-}
 
-swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 200px;
-    height: 200px;
-    position: relative;
-    animation: all 2s ease-in-out;
-    overflow: hidden;
-
-    .hover-info {
-        display: none;
-    }
-}
-
-swiper-slide.swiper-slide-active {
-    .hover-info {
-        border-radius: 50%;
-        animation: all 2s ease-in-out;
-        display: none;
-        position: absolute;
-        z-index: 10000;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 1) 100%);
-    }
-}
-
-swiper-slide:hover .hover-info {
-    display: grid;
-    text-align: center;
-    place-items: center;
-}
-
-swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 50%;
-}
-
-ngx-stars .stars-line div:hover {
+ngx-stars[ng-reflect-readonly="false"] .stars-line div:hover {
     transform: scale(1.2) rotate(-10deg);
+}
+
+.trailerModal {
+    c-modal-dialog {
+        c-modal-content {
+            border: none;
+            background: rgba($color: #202731, $alpha: .5);
+    
+            c-modal-header {
+                border: none;
+                display: flex;
+                justify-content: end;
+                .modal-close {
+                    color: #ffffff !important;
+                    border: none;
+                    background: none;
+                }
+            }
+    
+            c-modal-body {
+                iframe {
+                    display: flex;
+                    width: 100%;
+                    height: 720px;
+                }
+            }
+        }
+    }
 }

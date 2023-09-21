@@ -84,13 +84,17 @@
     }
 }
 
-c-modal {
+c-modal.searchModal {
 
     padding-top: 5rem;
 
     .modal-header {
         justify-content: end;
         border: none;
+
+        button {
+            background: none;
+        }
     }
 
     .modal-content {

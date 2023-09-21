@@ -99,7 +99,8 @@ export class TMDBService {
     }).pipe(
       map((response: any) => {
         if (response.results && Array.isArray(response.results)) {
-          return response.results.filter((trailer: any) => trailer.type === 'Trailer');
+          // return response.results.filter((trailer: any) => trailer.type === 'Trailer');
+          return response.results;
         } else {
           return [];
         }
@@ -132,8 +133,10 @@ export class TMDBService {
 
     return reviewCollection.get().pipe(
       map((data: any) => {
-        const doc = data.docs;
-        return doc[0].data();
+        if (!data.empty) {
+          const doc = data.docs;
+          return doc[0].data();
+        }
       })
     )
   }
