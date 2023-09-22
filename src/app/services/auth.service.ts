@@ -45,7 +45,6 @@ export class AuthService {
   async login(username: string, password: string): Promise<any> {
     const credentials = await this.fbAuth.signInWithEmailAndPassword(username, password);
     this.currentUser = credentials.user!;
-    console.log(credentials.user);
     return credentials;
   }
 
@@ -77,9 +76,6 @@ export class AuthService {
           });
         });
       }
-
-      // this.userCredentials = regStatus;
-      console.log(regStatus);
 
       this.route.navigate(['./Home']);
     }

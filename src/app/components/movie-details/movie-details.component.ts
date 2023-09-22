@@ -90,6 +90,10 @@ export class MovieDetailsComponent implements OnInit {
     this.movieReviewFc.reset();
   }
 
+  handleWatched() {
+    console.log('Adding socio');
+  }
+
   ngOnInit(): void {
 
     this.spinner.show();
