@@ -6,6 +6,7 @@
 
 $base-color: #202731;
 $gamboge: #ea9e19;
+$robbin-egg: #02d3de;
 
 body {
     background-color: $base-color;
@@ -29,10 +30,28 @@ body {
 .circle-btn:hover {
     // background-color: #41454b !important;
     background: rgba($color: #41454b, $alpha: .3) !important;
+}
 
-    // fa-icon {
-    //     color: #02d3de;
-    // }
+.btn-glass {
+    background-color: rgba($color: #ffffff, $alpha: .1) !important;
+    color: #ffffff !important;
+    border-radius: 3px !important;
+    padding: .5rem 2.5rem !important;
+}
+
+.btn-glass:hover {
+    background-color: rgba($color: #ffffff, $alpha: .3) !important;
+}
+
+.btn-robbin {
+    background-color: $robbin-egg !important;
+    color: #ffffff !important;
+    border-radius: 3px !important;
+    padding: .5rem 2.5rem !important;
+}
+
+.btn-robbin:hover {
+    background-color: rgba($color: $robbin-egg, $alpha: .5) !important;
 }
 
 .block {

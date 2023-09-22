@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie, MovieCast, MovieReviews, MovieTrailer } from 'src/app/interfaces/movie';
 import { TMDBService } from 'src/app/services/tmdb.service';
@@ -60,7 +60,12 @@ export class MovieDetailsComponent implements OnInit {
 
   toggleLiveDemo(selected?: MovieTrailer) {
     this.visible = !this.visible;
-    this.selectTrailer = selected;
+    this.selectTrailer = selected;    
+
+    if (selected == undefined) {
+      document.getElementById('video')?.setAttribute('src', '');
+    }
+
   }
 
   handleLiveDemoChange(event: any) {
@@ -132,7 +137,6 @@ export class MovieDetailsComponent implements OnInit {
         // Get movie rates
         this.tmdbService.getMovieRating(this.movieID).subscribe({
           next: (rate: number) => {
-            console.log(rate);
             this.ratingDisplay = rate;
             this.movieRate = rate;
           }

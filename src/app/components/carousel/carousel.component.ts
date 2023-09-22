@@ -13,23 +13,27 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.slides[0] = {
-      title: 'New Movie',
-      subtitle: 'Watch Now',
+      id: '667538',
+      title: 'Transformers: Rise of the Beasts',
+      subtitle: 'Details',
       src: '2vFuG6bWGyQUzYS9d69E5l85nIz.jpg',
     };
     this.slides[1] = {
-      title: 'New Movie',
-      subtitle: 'Watch Now',
+      id: '981314',
+      title: 'Alien Invasion',
+      subtitle: 'Details',
       src: 'rbqxeMXNCCwGErcO4e6eUZA9LG1.jpg',
     }
     this.slides[2] = {
-      title: 'New Movie',
-      subtitle: 'Watch Now',
+      id: '385687',
+      title: 'Fast X',
+      subtitle: 'Details',
       src: '4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg',
     }
     this.slides[3] = {
-      title: 'New Movie',
-      subtitle: 'Watch Now',
+      id: '447365',
+      title: 'Guardians of the Galaxy Vol. 3',
+      subtitle: 'Details',
       src: '5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg',
     }
   }

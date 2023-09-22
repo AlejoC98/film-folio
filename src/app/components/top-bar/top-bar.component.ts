@@ -5,7 +5,8 @@ import {
   faHouse, 
   faRightFromBracket, 
   faMagnifyingGlass, 
-  faX 
+  faX, 
+  faEye
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 import { TMDBService } from 'src/app/services/tmdb.service';
@@ -23,6 +24,7 @@ export class TopBarComponent {
   faRightFromBracket = faRightFromBracket;
   faMagnifyingGlass = faMagnifyingGlass;
   faX = faX;
+  faEye = faEye;
 
   constructor(
     public auhtService: AuthService,
@@ -43,6 +45,11 @@ export class TopBarComponent {
       name: 'Favorites',
       icon: faBookmark,
       link: './Favorites'
+    },
+    {
+      name: 'Watched',
+      icon: faEye,
+      link: './Watched'
     },
   ];
 

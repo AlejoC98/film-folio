@@ -13,7 +13,9 @@
         />
         <c-carousel-caption class="d-none d-md-block">
           <h3>{{slide.title}}</h3>
-          <p>{{slide.subtitle}}</p>
+          <!-- <a [routerLink]="['/Movie']">{{slide.subtitle}}</a> -->
+          <!-- <button [routerLink]="['/Movie']" [queryParams]="{ id: slide.id}">{{slide.subtitle}}</button> -->
+          <button class="btn btn-glass" [routerLink]="['/Movie/' + slide.id]">{{slide.subtitle}}</button>
         </c-carousel-caption>
       </c-carousel-item>
     </c-carousel-inner>

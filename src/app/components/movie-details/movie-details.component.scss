@@ -1,3 +1,5 @@
+$robbin-egg: #02d3de;
+
 .movie-detail-container {
     .movie-banner {
         overflow: hidden;
@@ -45,21 +47,6 @@
             width: 320px;
             display: flex;
             justify-content: space-between;
-
-            .btn-watch {
-                // background-color: #ea9e19;
-                background-color: #02d3de;
-                color: #ffffff;
-                border-radius: 3px;
-                padding: .5rem 2.5rem;
-            }
-    
-            .btn-list {
-                background-color: rgba($color: #ffffff, $alpha: .1);
-                color: #ffffff;
-                border-radius: 3px;
-                padding: .5rem 2.5rem;
-            }
         }
 
     }
