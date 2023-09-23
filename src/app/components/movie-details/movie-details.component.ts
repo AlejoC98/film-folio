@@ -106,6 +106,10 @@ export class MovieDetailsComponent implements OnInit {
     })
   }
 
+  handleMyList() {
+    console.log('Adding to favorite');
+  }
+
   ngOnInit(): void {
 
     this.spinner.show();

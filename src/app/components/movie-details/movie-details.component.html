@@ -12,7 +12,7 @@
             </p>
             <p class="action-btns">
                 <button class="btn btn-robbin" (click)="handleWatched()" [disabled]="watched">
-                    <fa-icon [icon]="watched ? faEye :faPlay"></fa-icon>
+                    <fa-icon [icon]="watched ? faEye : faPlay"></fa-icon>
                     {{ watched ? 'Watched' : 'Watch' }}
                 </button>
                 <button class="btn btn-glass">
