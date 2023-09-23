@@ -1,0 +1,44 @@
+.container-watched {
+    padding-top: 5rem;
+    height: 100vh;
+    
+    .no-comments-message {
+        // background-color: red;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 55vh;
+
+        h2 {
+            color: #6e6e6e;
+        }
+    }
+
+    .row-title {
+        padding: 2rem 0;
+        div {
+            text-align: center;
+        }
+    }
+
+    .movie-card {
+        span {
+            position: absolute;
+            z-index: 1000;
+            top: 25px;
+            right: 25px;
+            // background-color: red;
+            padding: .05rem .4rem;
+            border-radius: 50%;
+            transition: all .2s ease-in-out;
+
+            fa-icon {
+                color: #ffffff;
+            }
+        }
+
+        span:hover {
+            background-color: #C73E1D;
+        }
+    }
+}

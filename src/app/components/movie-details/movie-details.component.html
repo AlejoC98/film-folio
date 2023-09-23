@@ -11,9 +11,9 @@
                 <ngx-stars [readonly]="true" [color]="'#FFD700'" [initialStars]="4.3" />
             </p>
             <p class="action-btns">
-                <button class="btn btn-robbin" (click)="handleWatched()">
-                    <fa-icon [icon]="faPlay"></fa-icon>
-                    Watch
+                <button class="btn btn-robbin" (click)="handleWatched()" [disabled]="watched">
+                    <fa-icon [icon]="watched ? faEye :faPlay"></fa-icon>
+                    {{ watched ? 'Watched' : 'Watch' }}
                 </button>
                 <button class="btn btn-glass">
                     <fa-icon [icon]="faPlus"></fa-icon>

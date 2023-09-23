@@ -7,6 +7,7 @@ import { MovieDetailsComponent } from '../components/movie-details/movie-details
 import { TmdbcallbackComponent } from '../components/tmdbcallback/tmdbcallback.component';
 import { AuthComponent } from '../components/auth/auth.component';
 import { SignupComponent } from '../components/signup/signup.component';
+import { WatchedMoviesComponent } from '../components/watched-movies/watched-movies.component';
 
 const routes: Routes = [
   // { path: '',  redirectTo: 'Login', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'SignUp', component: SignupComponent, canActivate: [ authGuard ] },
   { path: 'Home', component: HomeComponent, canActivate: [ authGuard ] },
   { path: 'Movie/:id', component: MovieDetailsComponent },
+  { path: 'Watched', component: WatchedMoviesComponent },
   { path: 'TMDBCallback', component: TmdbcallbackComponent },
 ];
 

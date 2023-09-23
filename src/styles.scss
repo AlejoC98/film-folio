@@ -7,6 +7,7 @@
 $base-color: #202731;
 $gamboge: #ea9e19;
 $robbin-egg: #02d3de;
+$sinopia: #C73E1D;
 
 body {
     background-color: $base-color;
@@ -208,6 +209,31 @@ input.auth-input:focus + fa-icon, input.auth-input:focus-visible + fa-icon {
     width: 100%;
 }
 
+c-card.movie-card {
+    transition: all .3s ease-in-out;
+    padding: 1rem;
+    border: none;
+    background-color: transparent;
+    overflow: hidden;
+    position: relative;
+
+    img {
+        border-radius: 20px;
+    }
+
+    c-card-body {
+        text-align: center;
+        color: #ffffff;
+    }
+}
+
+c-card.movie-card:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+
 input[type="number"].number-input::-webkit-inner-spin-button,
 input[type="number"].number-input::-webkit-outer-spin-button,
 input[type="number"].number-input::-webkit-clear-button {
@@ -232,19 +258,3 @@ input[type="number"].number-input::-webkit-clear-button {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-// .list-container::-webkit-scrollbar {
-//     width: 7px;
-//   }
-  
-// .list-container::-webkit-scrollbar-track {
-//     background: transparent;
-//   }
-  
-// .list-container::-webkit-scrollbar-thumb {
-//     background: #888;
-//     border-radius: 5px;
-//   }
-  
-// .list-container::-webkit-scrollbar-thumb:hover {
-//     background: #555;
-//   }

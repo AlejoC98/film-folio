@@ -8,25 +8,26 @@
         padding: 3rem 0;
     }
     padding: 0 3rem;
-    c-card {
-        transition: all .3s ease-in-out;
-        padding: 1rem;
-        border: none;
-        background-color: transparent;
-        overflow: hidden;
 
-        img {
-            border-radius: 20px;
-        }
+    // c-card {
+    //     transition: all .3s ease-in-out;
+    //     padding: 1rem;
+    //     border: none;
+    //     background-color: transparent;
+    //     overflow: hidden;
 
-        c-card-body {
-            text-align: center;
-            color: #ffffff;
-        }
-    }
+    //     img {
+    //         border-radius: 20px;
+    //     }
 
-    c-card:hover {
-        transform: scale(1.1);
-        cursor: pointer;
-    }
+    //     c-card-body {
+    //         text-align: center;
+    //         color: #ffffff;
+    //     }
+    // }
+
+    // c-card:hover {
+    //     transform: scale(1.1);
+    //     cursor: pointer;
+    // }
 }

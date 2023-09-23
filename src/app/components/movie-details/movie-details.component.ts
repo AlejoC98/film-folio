@@ -2,12 +2,12 @@ import { Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angula
 import { ActivatedRoute } from '@angular/router';
 import { Movie, MovieCast, MovieReviews, MovieTrailer } from 'src/app/interfaces/movie';
 import { TMDBService } from 'src/app/services/tmdb.service';
-import { faChevronLeft, faPaperPlane, faPlay, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faEye, faPaperPlane, faPlay, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { AuthService } from 'src/app/services/auth.service';
 import { FormControl } from '@angular/forms';
 import { faCirclePlay } from '@fortawesome/free-regular-svg-icons';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -24,7 +24,6 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tmdbService: TMDBService,
-    private authService: AuthService,
     private sanitizer: DomSanitizer,
     private spinner: NgxSpinnerService
   ) {
@@ -40,8 +39,10 @@ export class MovieDetailsComponent implements OnInit {
   faPlus = faPlus;
   faCirclePlay = faCirclePlay;
   faX = faX;
+  faEye = faEye;
 
   // Variables
+  watched: boolean = false;
   movieRate: number | undefined;
   releaseDate: Date | undefined;
   ratingDisplay: number | undefined;
@@ -91,7 +92,18 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   handleWatched() {
-    console.log('Adding socio');
+    this.tmdbService.addToWatched(this.movieID).subscribe({
+      next: (status: boolean) => {
+        if (status) {
+          Swal.fire({
+            title: '',
+            text: 'Successfully added to the watched list',
+            icon: 'success',
+            confirmButtonText: 'close'
+          });
+        }
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -101,6 +113,10 @@ export class MovieDetailsComponent implements OnInit {
     this.tmdbService.getMovieDetails(this.movieID).subscribe({
       next: (movie: Movie) => {
         this.movie = movie;
+
+        this.tmdbService.getWatchedMovies().subscribe({
+          next: (movies: Array<any>) => this.watched = movies.find((id: string) => id == this.movieID) ? true : false
+        })
 
         this.releaseDate = new Date(movie.release_date);
 

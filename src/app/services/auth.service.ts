@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Observable, map } from 'rxjs';
 
 
 @Injectable({
@@ -22,7 +23,14 @@ export class AuthService {
   ) {
     this.fbAuth.authState.subscribe((user) => {
       this.currentUser = user!;
-    })
+    });
+  }
+
+  AuthStatus(): void {
+    const data = localStorage.getItem('credentials');
+    if (data != null) {
+      this.currentUser = JSON.parse(data);
+    }
   }
 
   GoogleAuth() {
@@ -45,6 +53,7 @@ export class AuthService {
   async login(username: string, password: string): Promise<any> {
     const credentials = await this.fbAuth.signInWithEmailAndPassword(username, password);
     this.currentUser = credentials.user!;
+    localStorage.setItem('credentials', JSON.stringify(credentials.user!));
     return credentials;
   }
 
