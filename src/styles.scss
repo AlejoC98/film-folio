@@ -68,26 +68,26 @@ body {
 }
 
 .btn-join {
-    border-color: #ea9e19;
-    color: #ea9e19;
-    transition: all .2 ease-in-out;
+    border-color: #ea9e19 !important;
+    color: #ea9e19 !important;
+    transition: all .2 ease-in-out !important;
 }
 
 .btn-join:hover {
-    border-color: #ea9e19;
-    background-color: #ea9e19;
-    color: #ffffff;
+    border-color: #ea9e19 !important;
+    background-color: #ea9e19 !important;
+    color: #ffffff !important;
 
 }
 
 .btn-login {
-    background-color: #ea9e19;
-    color: #ffffff;
-    transition: all .2 ease-in-out;
+    background-color: #ea9e19 !important;
+    color: #ffffff !important;
+    transition: all .2 ease-in-out !important;
 }
 
 .btn-login:hover {
-    background-color: #d28d15;
+    background-color: #d28d15 !important;
 }
 
 input.auth-input {

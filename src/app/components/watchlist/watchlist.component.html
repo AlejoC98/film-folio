@@ -1,0 +1,29 @@
+<app-top-bar></app-top-bar>
+<div class="container-fluid container-watchlist">
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+        <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner>
+    <div class="row row-title">
+        <div class="col-12">
+            <h2>Watched Movies</h2>
+        </div>
+    </div>
+    <section class="row" *ngIf="watchList.length > 0; else message">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-1" *ngFor="let movie of watchList">
+            <c-card class="movie-card">
+                <span (click)="remove(movie.id)">
+                    <fa-icon [icon]="faTrashCan"></fa-icon>
+                </span>
+                <img [routerLink]="['/Movie', movie.id]" cCardImg="top" src='https://image.tmdb.org/t/p/original/{{ movie.poster_path}}' >
+                <c-card-body>
+                    <h3 cCardTitle>{{ movie.title }}</h3>
+                </c-card-body>
+            </c-card>
+        </div>
+    </section>
+    <ng-template #message>
+        <div class="no-comments-message">
+            <h2>No movies in your Watch list. Add some movies to get started!</h2>
+        </div>
+    </ng-template>
+</div>

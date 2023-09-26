@@ -37,34 +37,6 @@ export class TMDBService {
     this.sessionID = id;
   }
 
-  // createSessionToken(): void {
-  //   this.http.get('https://api.themoviedb.org/3/authentication/token/new', {
-  //     headers: this.headers
-  //   }).subscribe({
-  //     next: (token: any) => {
-  //       this.token = token.request_token;
-
-  //       this.headers.append('content-type', 'application/json');
-
-  //       window.open(`https://www.themoviedb.org/authenticate/${this.token}?redirect_to=http://localhost:4200/TMDBCallback`, '_self');
-  //     }
-  //   })
-  // }
-
-  // createSessionID(token: string): Observable<any> {
-
-  //   const body = { request_token: token };
-
-  //   return this.http.post('https://api.themoviedb.org/3/authentication/session/new', body, {
-  //     headers: this.headers,
-  //   }).pipe(
-  //     catchError((error) => {
-  //       console.log(error);
-  //       return throwError(error);
-  //     })
-  //   );
-  // }
-
   getTrendingMovies(): Observable<any> {
     return this.http.get<Movie[]>('https://api.themoviedb.org/3/trending/movie/day?language=en-US', {
       headers: this.headers
@@ -131,16 +103,14 @@ export class TMDBService {
   }
 
   getLocalMovieReviews(movieId: string): Observable<any> {
-    const reviewCollection = this.db.collection('movie-reviews', ref => ref.where('movie_id', '==', movieId));
-
-    return reviewCollection.get().pipe(
-      map((data: any) => {
-        if (!data.empty) {
-          const doc = data.docs;
-          return doc[0].data();
-        }
+    return this.db.collection(
+      'movie-reviews', 
+      ref => ref.where('movie_id', '==', movieId)
+    ).valueChanges().pipe(
+      switchMap(querySnapshot => {
+        return querySnapshot;
       })
-    )
+    );
   }
 
   createMovieReview(movieId: string, comment: string, rate: number | undefined) {
@@ -165,11 +135,8 @@ export class TMDBService {
       if (!querySnapshot.empty) {
         const doc = querySnapshot.docs[0];
         const currentData = Object(doc.data());
-        let currentUserReview = currentData.reviews.find((u: { userui: string | null; }) => u.userui === this.authService.currentUser!.uid);
 
         currentData.reviews.push(insert);
-        // if (!currentUserReview) {
-        // }
 
         doc.ref.update({
           reviews: currentData.reviews
@@ -244,28 +211,48 @@ export class TMDBService {
     });
   }
 
-  addToWatched(movie_id: string): Observable<any> {
+  addUserMovies(movie_id: string, type: string): Observable<any> {
+
+    interface InsertData {
+      userui: string | null | undefined;
+      [key: string]: string[] | string | null | undefined;
+    }
+
+    interface UpdateData {
+      [key: string]: string[] | string | null | undefined;
+    }
+
     const query = this.db.collection(
-      'users-watched',
+      'users-movies',
       ref => ref.where('userui', '==', this.authService.currentUser?.uid)
     );
 
     return query.get().pipe(
       map(querySnapshot => {
         if (querySnapshot.empty) {
-          this.db.collection('users-watched').add({
+          const insert: InsertData = {
             'userui': this.authService.currentUser?.uid,
-            'movies': [
-              movie_id
-            ]
-          });
+          }
+
+          insert[type] = [
+            movie_id
+          ]
+
+          this.db.collection('users-movies').add(insert);
         } else {
           const doc = querySnapshot.docs[0];
           const currentData = Object(doc.data());
-          currentData.movies.push(movie_id);
-          doc.ref.update({
-            movies: currentData.movies
-          });
+          const update: UpdateData = {};
+
+          if (Object.keys(currentData).includes(type)) {
+            currentData[type].push(movie_id);
+          } else {
+            currentData[type] = [movie_id];
+          }
+          
+          update[type] = currentData[type];
+
+          doc.ref.update(update);
         }
 
         return true;
@@ -273,23 +260,29 @@ export class TMDBService {
     )
   }
 
-  getWatchedMovies(): Observable<any> {
+  getUserMovies(list?: string): Observable<any> {
+
     return this.db.collection(
-      'users-watched',
+      'users-movies',
       ref => ref.where('userui', '==', this.authService.currentUser?.uid)
     ).valueChanges().pipe(
       switchMap(querySnapshot => {
         
-        const watched = Object(querySnapshot[0]);
+        const data = Object(querySnapshot[0]);
 
-        return of(watched.movies);
+        return list != undefined ? of(data[list]) : of(data);
       })
     )
   }
 
-  removeWatched(movie_id: string): Observable<any> {
+  removeMovieFromList(list: string, movie_id: string): Observable<any> {
+
+    interface UpdateData {
+      [key: string]: string[] | string | null | undefined;
+    }
+
     const query = this.db.collection(
-      'users-watched',
+      'users-movies',
       ref => ref.where('userui', '==', this.authService.currentUser?.uid)
     );
     return query.get().pipe(
@@ -297,11 +290,13 @@ export class TMDBService {
         const doc = querySnapshot.docs[0];
         const watchedMovies = Object(doc.data());
 
-        const newMovies = watchedMovies.movies.filter((item: string) => item != movie_id);
+        const newMovies = watchedMovies[list].filter((item: string) => item != movie_id);
 
-        doc.ref.update({
-          movies: newMovies
-        });
+        const update: UpdateData = {};
+
+        update[list] = newMovies;
+
+        doc.ref.update(update);
 
         return true;
       })

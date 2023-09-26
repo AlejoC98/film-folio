@@ -39,17 +39,17 @@ export class TopBarComponent {
     {
       name: 'Home',
       icon: faHouse,
-      link: '/Home'
+      link: ['/Home']
     },
     {
-      name: 'Favorites',
+      name: 'Watchlist',
       icon: faBookmark,
-      link: '/Favorites'
+      link: ['/Watchlist']
     },
     {
       name: 'Watched',
       icon: faEye,
-      link: '/Watched'
+      link: ['/Watched']
     },
   ];
 

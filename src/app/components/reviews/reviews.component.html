@@ -29,7 +29,7 @@
                                     [maxStars]="5"
                                     [readonly]="true" 
                                     [color]="'#FFD700'"
-                                    [initialStars]="review.author_details.rating / 2" 
+                                    [initialStars]="review.author_details.rating" 
                                 ></ngx-stars>
                             </span>
                         </div>                        
@@ -52,8 +52,13 @@
                     <div class="review-text">
                         <span> {{ review.author }} </span>
                         <span>
-                            <ngx-stars [readonly]="true" [size]="1" [maxStars]="5"
-                                [initialStars]="review.author_details.rating / 2" [color]="'#FFD700'"></ngx-stars>
+                            <ngx-stars 
+                                [readonly]="true" 
+                                [size]="1" 
+                                [maxStars]="5"
+                                [initialStars]="review.author_details.rating"
+                                [color]="'#FFD700'"
+                            ></ngx-stars>
                             {{ review.author_details.rating }}
                         </span>
                         <span> {{ review.created_at }} </span>

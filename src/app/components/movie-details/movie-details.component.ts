@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewEncapsulation } from '@angula
 import { ActivatedRoute } from '@angular/router';
 import { Movie, MovieCast, MovieReviews, MovieTrailer } from 'src/app/interfaces/movie';
 import { TMDBService } from 'src/app/services/tmdb.service';
-import { faChevronLeft, faEye, faPaperPlane, faPlay, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faEye, faPaperPlane, faPlay, faPlus, faX, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { faCirclePlay } from '@fortawesome/free-regular-svg-icons';
@@ -40,9 +40,11 @@ export class MovieDetailsComponent implements OnInit {
   faCirclePlay = faCirclePlay;
   faX = faX;
   faEye = faEye;
+  faXmark = faXmark;
 
   // Variables
   watched: boolean = false;
+  watchlist: boolean = false;
   movieRate: number | undefined;
   releaseDate: Date | undefined;
   ratingDisplay: number | undefined;
@@ -84,15 +86,12 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   submitMovieReview(): void {
-    let data = this.tmdbService.createMovieReview(this.movieID, this.movieReviewFc.value!, this.movieRate);
-    let newReview: MovieReviews = data;
-    this.localMovieReviews.push(newReview);
-
+    this.tmdbService.createMovieReview(this.movieID, this.movieReviewFc.value!, this.movieRate);
     this.movieReviewFc.reset();
   }
 
   handleWatched() {
-    this.tmdbService.addToWatched(this.movieID).subscribe({
+    this.tmdbService.addUserMovies(this.movieID, 'Watched').subscribe({
       next: (status: boolean) => {
         if (status) {
           Swal.fire({
@@ -107,7 +106,33 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   handleMyList() {
-    console.log('Adding to favorite');
+    this.tmdbService.addUserMovies(this.movieID, 'Watchlist').subscribe({
+      next: (status: boolean) => {
+        if (status) {
+          Swal.fire({
+            title: '',
+            text: 'Successfully added to the watch list',
+            icon: 'success',
+            confirmButtonText: 'close'
+          });
+        }
+      }
+    })
+  }
+
+  handleRemoveList(): void {
+    this.tmdbService.removeMovieFromList('Watchlist', this.movieID).subscribe({
+      next: (res: boolean) => {
+        if (res) {
+          Swal.fire({
+            title: 'Removed!',
+            text: 'Movie removed',
+            icon: 'warning',
+            confirmButtonText: 'Close'
+          });
+        }
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -118,9 +143,15 @@ export class MovieDetailsComponent implements OnInit {
       next: (movie: Movie) => {
         this.movie = movie;
 
-        this.tmdbService.getWatchedMovies().subscribe({
-          next: (movies: Array<any>) => this.watched = movies.find((id: string) => id == this.movieID) ? true : false
-        })
+        this.tmdbService.getUserMovies().subscribe({
+          next: (movies: any) => {
+            if (movies != undefined) {
+              movies = Object(movies);
+              this.watched = movies.Watched.includes(this.movieID) ? true : false
+              this.watchlist = movies.Watchlist.includes(this.movieID) ? true : false
+            }
+          }
+        });
 
         this.releaseDate = new Date(movie.release_date);
 
@@ -140,7 +171,6 @@ export class MovieDetailsComponent implements OnInit {
 
         // Getting movie trailer
         this.tmdbService.getMovieTrailer(this.movieID).subscribe(trailers => {
-          // this.movieTrailer = trailers[Math.floor(Math.random() * trailers.length)];
           this.movieTrailer = trailers;
         });
         // Movie cast
@@ -155,7 +185,6 @@ export class MovieDetailsComponent implements OnInit {
         this.tmdbService.getLocalMovieReviews(this.movieID).subscribe({
           next: (reviews: any) => {
             this.localMovieReviews = reviews != undefined ? reviews.reviews : [];
-            // console.log(reviews.reviews);
           }
         });
         // Get movie rates

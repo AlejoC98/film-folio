@@ -15,9 +15,9 @@
                     <fa-icon [icon]="watched ? faEye : faPlay"></fa-icon>
                     {{ watched ? 'Watched' : 'Watch' }}
                 </button>
-                <button class="btn btn-glass">
-                    <fa-icon [icon]="faPlus"></fa-icon>
-                    My List
+                <button class="btn btn-glass" (click)="watchlist ? handleRemoveList() : handleMyList()">
+                    <fa-icon [icon]="watchlist ? faXmark : faPlus"></fa-icon>
+                    {{ watchlist ? 'Remove' : 'My List' }}
                 </button>
             </p>
         </div>

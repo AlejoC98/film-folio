@@ -36,7 +36,7 @@ export class AuthService {
   GoogleAuth() {
     this.fbAuth.signInWithPopup(this.GoogleProvider).then((res) => {
       this.route.navigate(['./Home']);
-
+      localStorage.setItem('credentials', JSON.stringify(res.user!));
     }).catch((error) => {
       console.log(error);
     });

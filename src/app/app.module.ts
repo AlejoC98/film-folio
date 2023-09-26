@@ -28,7 +28,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { WatchedMoviesComponent } from './components/watched-movies/watched-movies.component';
+import { WatchlistComponent } from './components/watchlist/watchlist.component';
+import { WatchedComponent } from './components/watched/watched.component';
 register();
 
 @NgModule({
@@ -47,7 +48,8 @@ register();
     ParallaxDirective,
     SignupComponent,
     FooterComponent,
-    WatchedMoviesComponent
+    WatchlistComponent,
+    WatchedComponent,
   ],
   imports: [
     BrowserModule,
