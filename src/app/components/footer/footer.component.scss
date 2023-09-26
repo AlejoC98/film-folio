@@ -51,8 +51,20 @@ $old-rose: #C2334F;
 
     .copyrights-row {
         padding: 1rem;
-        span {
+        span.author {
             color: $old-rose;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-container {
+        .row {
+            width: 80%;
+        }
+
+        .social-row {
+            width: 80%;
         }
     }
 }

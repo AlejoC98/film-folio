@@ -2,7 +2,7 @@
     <c-container fluid>
         <span>
             <img width="40" src="assets/images/logo.PNG" alt="">
-            ilmFolio
+            <span>ilmFolio</span>
         </span>
         <div class="list-menu">
             <c-navbar-nav>
@@ -15,9 +15,9 @@
         </div>
     </c-container>
     <div class="action-container">
-        <button class="circle-btn action-btn" (click)="toggleLiveDemo()">
+        <!-- <button class="circle-btn action-btn" (click)="modalComponent.toggleLiveDemo()">
             <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
-        </button>
+        </button> -->
         <button class="circle-btn action-btn" (click)="auhtService.logout()">
             <fa-icon [icon]="faRightFromBracket"></fa-icon>
         </button>
@@ -25,26 +25,7 @@
             <img [src]="auhtService.currentUser?.photoURL" alt="">
         </div>
     </div>
+    <div class="burger-menu show" (click)="toggleMenu()">
+        <fa-icon [icon]="faBars"></fa-icon>
+    </div>    
 </c-navbar>
-
-<c-modal class="searchModal" id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
-    <c-modal-header>
-        <button (click)="toggleLiveDemo()" cButtonClose class="modal-close">
-            <fa-icon [icon]="faX"></fa-icon>
-        </button>
-    </c-modal-header>
-    <c-modal-body>
-        <input type="text" class="modal-search-input" [formControl]="keyword" placeholder="Search..." (keyup.enter)="serachMovie()" autofocus>
-        <div class="container search-container">
-            <app-list-group 
-                [list]="searchContent!" 
-                *ngIf="searchContent != undefined && searchContent!.length > 0; else message"
-            ></app-list-group>
-            <ng-template #message>
-                <div class="search-message">
-                    <h3>{{ searchMessage }}</h3>
-                </div>
-            </ng-template>
-        </div>
-    </c-modal-body>
-</c-modal>

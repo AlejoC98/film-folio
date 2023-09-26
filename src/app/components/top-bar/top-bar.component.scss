@@ -1,12 +1,4 @@
-.modal-close {
-    border: none;
-    background-color: transparent;
-    color: #ffffff;
-}
-
 .navbar {
-    // background-color: #202731;
-    // padding: 0 0 .5rem 0;
     padding: 0;
     position: fixed;
     top: 0;
@@ -82,53 +74,52 @@
             border: 2px solid #b2b2b2;
         }
     }
+
+    .burger-menu {
+        display: none;
+        position: absolute;
+        right: 20px;
+    }
 }
 
-c-modal.searchModal {
-
-    padding-top: 5rem;
-
-    .modal-header {
-        justify-content: end;
-        border: none;
-
-        button {
-            background: none;
-        }
-    }
-
-    .modal-content {
-        background-color: transparent !important;
-        border: none;
-
-        .modal-search-input {
-            background-color: transparent;
-            width: 100%;
-            border: none;
-            border-bottom: 1px solid #ffffff;
-            color: #ffffff;
-            font-size: 20px;
-        }
-
-        .modal-search-input:focus-visible {
-            border: none;
-            border-bottom: 1px solid #ffffff;
-            outline: none;
-        }
-
-        .search-container {
-            margin-top: 3rem;
-
-            .search-message h3 {
-                text-align: center;
-                color: #b2b2b2;
+@media screen and (max-width: 768px) {
+    .navbar {
+        c-container {
+            span {
+                span {
+                    display: none;
+                }
             }
         }
-    }
-}
 
-.modal-backdrop {
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.5);
-    --bs-backdrop-opacity: 1;
+        c-container::after {
+            width: 30px !important;
+        }
+    
+        c-container::before {
+            width: 30px !important;
+        }
+
+        .action-container {
+            display: none !important;
+        }
+
+        .burger-menu {
+            display: none;
+            padding: .2rem .7rem;
+            border-radius: 50%;
+
+            fa-icon {
+                font-size: 25px;
+            }
+        }
+
+        .burger-menu.show {
+            display: flex;
+        }
+
+        .burger-menu:hover {
+            background-color: rgba($color: #cccccc, $alpha: .5);
+        }
+    }
 }

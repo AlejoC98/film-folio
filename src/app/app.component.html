@@ -1,4 +1,32 @@
 <main>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
+  <section class="mobile-container">
+    <div class="burger-menu" (click)="toggleMenu()">
+      <fa-icon [icon]="faXmark"></fa-icon>
+    </div>
+    <ul cListGroup class="menu-list">
+      <li cListGroupItem>
+        <div class="icon-container">
+          <div class="avatar">
+            <img [src]="auhtService.currentUser?.photoURL" alt="">
+          </div>
+        </div>
+        <span>Account</span>
+      </li>
+      <!-- <li cListGroupItem (click)="topBarComponent.toggleLiveDemo()">
+        <div class="icon-container">
+          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        </div>
+        <span>Search</span>
+      </li> -->
+      <li cListGroupItem (click)="auhtService.logout()">
+        <div class="icon-container">
+          <fa-icon [icon]="faRightFromBracket"></fa-icon>
+        </div>
+        <span>Log Out</span>
+      </li>
+    </ul>
+  </section>
+  <app-modal></app-modal>
 </main>
