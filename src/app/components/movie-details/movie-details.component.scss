@@ -167,7 +167,7 @@ ngx-stars[ng-reflect-readonly="false"] .stars-line div:hover {
             c-modal-header {
                 border: none;
                 display: flex;
-                justify-content: end;
+                justify-content: flex-end;
                 .modal-close {
                     color: #ffffff !important;
                     border: none;
