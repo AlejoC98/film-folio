@@ -28,9 +28,6 @@ export class ParallaxDirective {
 
     @HostListener('window:scroll')
     onWindowScroll() {
-
-        console.log(800 - this.getTranslation());
-
         this.renderer.setProperty(
           this.elementRef.nativeElement, 
           'style',

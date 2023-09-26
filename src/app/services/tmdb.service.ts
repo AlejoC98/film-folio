@@ -268,9 +268,12 @@ export class TMDBService {
     ).valueChanges().pipe(
       switchMap(querySnapshot => {
         
-        const data = Object(querySnapshot[0]);
-
-        return list != undefined ? of(data[list]) : of(data);
+        if (querySnapshot.length > 0) {
+          const data = Object(querySnapshot[0]);
+          return list != undefined ? of(data[list]) : of(data);
+        } else {
+          return of(undefined);
+        }
       })
     )
   }
