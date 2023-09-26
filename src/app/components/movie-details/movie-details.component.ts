@@ -137,6 +137,8 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    window.scrollTo(0, 0);
+
     this.spinner.show();
 
     this.tmdbService.getMovieDetails(this.movieID).subscribe({

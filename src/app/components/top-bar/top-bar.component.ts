@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TMDBService } from 'src/app/services/tmdb.service';
 import { FormControl } from '@angular/forms';
 import { Movie } from 'src/app/interfaces/movie';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-top-bar',
@@ -26,9 +27,14 @@ export class TopBarComponent {
   faX = faX;
   faEye = faEye;
 
+  public visible = false;
+
+  searchMessage: string = 'Start Your Journey'
+
   constructor(
     public auhtService: AuthService,
-    private tmdbService: TMDBService
+    private tmdbService: TMDBService,
+    private spinner: NgxSpinnerService
   ) {}
 
   keyword = new FormControl('');
@@ -51,9 +57,7 @@ export class TopBarComponent {
       icon: faEye,
       link: ['/Watched']
     },
-  ];
-
-  public visible = false;
+  ];  
 
   toggleLiveDemo() {
     this.visible = !this.visible;
@@ -64,9 +68,14 @@ export class TopBarComponent {
   }
 
   serachMovie() {
+    this.spinner.show();
     this.tmdbService.search(this.keyword.value!).subscribe({
       next: (movies: Movie[]) => {
         this.searchContent = movies;
+        if (movies.length <= 0) {
+          this.searchMessage =  'Oops! No results found';
+        }
+        this.spinner.hide();
       }
     });
   }
