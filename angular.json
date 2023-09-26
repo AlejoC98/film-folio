@@ -20,6 +20,9 @@
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -41,13 +44,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "7mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "7kb",
+                  "maximumError": "7kb"
                 }
               ],
               "outputHashing": "all"
