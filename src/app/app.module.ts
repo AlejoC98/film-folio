@@ -30,6 +30,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { WatchlistComponent } from './components/watchlist/watchlist.component';
 import { WatchedComponent } from './components/watched/watched.component';
+import { SearchModalComponent } from './components/search-modal/search-modal.component';
 register();
 
 @NgModule({
@@ -50,6 +51,7 @@ register();
     FooterComponent,
     WatchlistComponent,
     WatchedComponent,
+    SearchModalComponent,
   ],
   imports: [
     BrowserModule,

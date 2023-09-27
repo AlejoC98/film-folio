@@ -1,0 +1,52 @@
+c-modal {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+    
+    .modal-content {
+        background-color: transparent !important;
+        border: none;
+
+        c-modal-header {
+            border: none;
+
+            .btn-close {
+                background: none;
+            }
+
+            .modal-close {
+                fa-icon {
+                    color: #ffffff;
+                }
+            }
+        }
+
+        c-modal-body {
+            display: grid;
+            place-items: center;
+
+            .modal-search-input {
+                background-color: transparent;
+                width: 100%;
+                border: none;
+                border-bottom: 1px solid #ffffff;
+                color: #ffffff;
+                font-size: 20px;
+            }
+
+            .modal-search-input:focus-visible {
+                border: none;
+                border-bottom: 1px solid #ffffff;
+                outline: none;
+            }
+
+            .search-container {
+                margin-top: 3rem;
+    
+                .search-message h3 {
+                    text-align: center;
+                    color: #b2b2b2;
+                }
+            }
+        }
+    }
+}

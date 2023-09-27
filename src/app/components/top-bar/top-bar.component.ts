@@ -9,6 +9,7 @@ import {
   faBars
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -25,6 +26,7 @@ export class TopBarComponent {
 
   constructor(
     public auhtService: AuthService,
+    public modalService: ModalService
   ) {}    
 
   menuItems: MenuItem[] = [

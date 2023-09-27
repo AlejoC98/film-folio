@@ -1,5 +1,5 @@
 <div class="list-container" cListGroup flush>
-    <a [routerLink]="['/Movie', item.id]" cListGroupItem *ngFor="let item of list" id="{{ item.id }}">
+    <a [routerLink]="['/Movie', item.id]" (click)="openItem()" cListGroupItem *ngFor="let item of list" id="{{ item.id }}">
         <div class="item-container">
             <img 
                 width="80" 

@@ -72,6 +72,15 @@ $robbin-egg: #02d3de;
         }
 
         .row-comments {
+
+            > :first-child {
+                padding: 2rem 0rem;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                
+            }
+
             .comment-form {
                 textarea {
                     width: 100%;
@@ -184,4 +193,7 @@ ngx-stars[ng-reflect-readonly="false"] .stars-line div:hover {
             }
         }
     }
+}
+
+@media screen and (max-width: 768px) {
 }

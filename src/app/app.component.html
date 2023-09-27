@@ -14,13 +14,13 @@
         </div>
         <span>Account</span>
       </li>
-      <!-- <li cListGroupItem (click)="topBarComponent.toggleLiveDemo()">
+      <li cListGroupItem (click)="openModal()">
         <div class="icon-container">
           <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
         </div>
         <span>Search</span>
-      </li> -->
-      <li cListGroupItem (click)="auhtService.logout()">
+      </li>
+      <li cListGroupItem (click)="logOut()">
         <div class="icon-container">
           <fa-icon [icon]="faRightFromBracket"></fa-icon>
         </div>
@@ -28,5 +28,5 @@
       </li>
     </ul>
   </section>
-  <app-modal></app-modal>
+  <app-search-modal [visible]="modalService.isModalVisible"></app-search-modal>
 </main>
