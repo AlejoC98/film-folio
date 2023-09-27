@@ -16,8 +16,9 @@
   }
 
 .list-container {
-    max-height: 400px;
+    max-height: 600px;
     overflow-y: scroll;
+    padding: 0 .5rem;
 
     a {
         background: transparent;
@@ -25,20 +26,22 @@
     }
 }
 
-
 .review-container {
+  padding: 1rem 0;
     display: flex;
 
     .author-profile {
         padding: .5rem;
         margin-right: 1rem;
         img {
+            width: 80px;
             border-radius: 50%;
             height: 80px;
         }
     }
 
     .review-text{
+      width: 100%;
       div {
         display: flex;
         align-items: center;
@@ -62,4 +65,30 @@ c-nav {
 
 .no-comments-message {
   color: #6e6e6e;
+}
+
+
+@media screen and (max-width: 768px) {
+  a[cListGroupItem] {
+    padding: 0 !important;
+  }
+  .review-container {
+    display: flex;
+
+    .review-text {
+      text-align: center;
+      div {
+        justify-content: center;
+      }
+    }
+  
+    .author-profile {
+      margin-right: 0;
+      img {
+        width: 50px;
+        border-radius: 50%;
+        height: 50px;
+      }
+    }
+  }
 }

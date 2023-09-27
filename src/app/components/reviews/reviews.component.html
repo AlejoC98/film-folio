@@ -17,7 +17,7 @@
             <a cListGroupItem *ngFor="let review of local" id="{{ review.id }}">
                 <div class="review-container">
                     <div class="author-profile">
-                        <img width="80" [src]="review.author_details.avatar_path" alt="">
+                        <img [src]="review.author_details.avatar_path" alt="">
                     </div>
                     <div class="review-text">
                         <span> {{ review.author }} </span>
@@ -33,7 +33,7 @@
                                 ></ngx-stars>
                             </span>
                         </div>                        
-                        <p>{{ review.content }}</p>
+                        <span>{{ review.content }}</span>
                     </div>
                 </div>
             </a>
@@ -62,7 +62,7 @@
                             {{ review.author_details.rating }}
                         </span>
                         <span> {{ review.created_at }} </span>
-                        <p>{{ review.content }}</p>
+                        <span>{{ review.content }}</span>
                     </div>
                 </div>
             </a>

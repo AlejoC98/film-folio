@@ -43,7 +43,6 @@ $robbin-egg: #02d3de;
         }
 
         .action-btns {
-            // background-color: #D01B59;
             width: 340px;
             display: flex;
             justify-content: space-between;
@@ -63,7 +62,7 @@ $robbin-egg: #02d3de;
     }
 
     .movie-container {
-        padding: 3rem;
+        padding: 3rem 1.5rem;
         position: relative;
         top: -80px;
 
@@ -196,4 +195,17 @@ ngx-stars[ng-reflect-readonly="false"] .stars-line div:hover {
 }
 
 @media screen and (max-width: 768px) {
+    .movie-container * {
+        text-align: center;
+    }
+
+    .row-details > div {
+        margin: 2rem 0;
+    }
+
+    swiper-container.trailers-swiper {
+        swiper-slide {
+            width: 100%;
+        }
+    }
 }

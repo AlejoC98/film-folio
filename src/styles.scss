@@ -218,7 +218,7 @@ c-card.movie-card {
     position: relative;
 
     img {
-        border-radius: 20px;
+        border-radius: 5px;
     }
 
     c-card-body {
@@ -228,8 +228,9 @@ c-card.movie-card {
 }
 
 c-card.movie-card:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
     cursor: pointer;
+    z-index: 10000;
 }
 
 

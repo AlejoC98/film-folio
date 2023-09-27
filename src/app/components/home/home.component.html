@@ -15,9 +15,9 @@
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-1" *ngFor="let movie of trendingMovies">
             <c-card class="movie-card" [routerLink]="['/Movie', movie.id]">
                 <img cCardImg="top" src='https://image.tmdb.org/t/p/original/{{ movie.poster_path}}' >
-                <c-card-body>
-                    <h3 cCardTitle>{{ movie.title }}</h3>
-                </c-card-body>
+                <!-- <c-card-body>
+                    <span cCardTitle>{{ movie.title }}</span>
+                </c-card-body> -->
             </c-card>
         </div>
     </div>

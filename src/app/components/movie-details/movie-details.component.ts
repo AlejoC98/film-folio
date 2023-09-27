@@ -135,14 +135,13 @@ export class MovieDetailsComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-
-    window.scrollTo(0, 0);
-
+  ngOnInit(): void {    
     this.spinner.show();
 
     this.tmdbService.getMovieDetails(this.movieID).subscribe({
       next: (movie: Movie) => {
+        window.scrollTo(0, 0);
+
         this.movie = movie;
 
         this.tmdbService.getUserMovies().subscribe({
