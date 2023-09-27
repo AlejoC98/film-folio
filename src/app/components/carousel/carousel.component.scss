@@ -36,3 +36,9 @@ c-carousel-indicators {
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .d-none {
+        display: block !important;
+    }
+}

@@ -39,18 +39,18 @@
             </swiper-container>
         </section>
         <section class="row row-details">
-            <div class="col-md-8">
-                <h3>Overview</h3>
+            <div class="col-md-12 col-lg-8">
+                <h2>Overview</h2>
                 <p>{{ movie?.overview }}</p>
             </div>
-            <div class="col-md-2">
-                <h3>Genres</h3>
+            <div class="col-md-12 col-lg-2">
+                <h2>Genres</h2>
                 <p *ngFor="let gen of movie?.genres">
                     <c-badge color="secondary">{{ gen.name }}</c-badge>
                 </p>
             </div>
-            <div class="col-md-2">
-                <h3>Details</h3>
+            <div class="col-md-12 col-lg-2">
+                <h2>Details</h2>
                 <p><strong>Duration:</strong> {{ movie?.runtime}} min</p>
                 <p><strong>Budget:</strong> {{ movieBudget }}</p>
                 <p><strong>Revenue:</strong> {{ movieRevenue }}</p>
@@ -58,7 +58,7 @@
         </section>
         <section class="row row-cast">
             <div class="col-12">
-                <h3>Cast</h3>
+                <h2>Cast</h2>
                 <swiper-container class="cast-swiper" pagination="false" effect="slide" grab-cursor="true"
                     slides-per-view="auto">
                     <swiper-slide *ngFor="let cast of movieCast">
@@ -69,11 +69,12 @@
                         </div>
                     </swiper-slide>
                 </swiper-container>
+                <span class="instructions">Drag me!</span>
             </div>
         </section>
         <section class="row row-comments">
             <div class="col-12">
-                <h3>Rating</h3>
+                <h2>Rating</h2>
                 <div class="stars">
                     <ngx-stars *ngIf="ratingDisplay != undefined"
                         [readonly]="ratingDisplay == undefined || ratingDisplay == 0 || movieRate == 0 ? false: true"
@@ -82,7 +83,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <h3>Comments</h3>
+                <h2>Comments</h2>
                 <div class="comment-form">
                     <textarea [formControl]="movieReviewFc" name="comment" placeholder="Comment..." id="" cols="30"
                         rows="5"></textarea>
